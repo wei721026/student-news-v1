@@ -1,0 +1,32 @@
+name: Student News V1 Regression
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Install Python dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r publisher/requirements.txt
+      - name: Run Python acceptance tests
+        run: python -m unittest -v tests.test_acceptance
+      - name: Run publisher HTTP smoke test
+        run: python -m unittest -v tests.test_publisher_http
+      - name: Run GAS core tests
+        run: node tests/gas_core_test.js
