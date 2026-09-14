@@ -1,0 +1,62 @@
+[
+  {
+    "Issue_ID": "2026-09-14-ZH-W01D1",
+    "Source_ID": "S001",
+    "Source_Type": "OFFICIAL",
+    "Publisher": "經濟部／台灣中油",
+    "Title": "中東戰事升溫…9/14-9/20國內汽、柴油價格各調漲0.7元及0.6元",
+    "URL": "https://www.moea.gov.tw/Mns/populace/news/News.aspx?kind=1&menu_id=40&news_id=123955",
+    "Source_Published_Date": "2026-09-12",
+    "Primary_Flag": "YES"
+  },
+  {
+    "Issue_ID": "2026-09-14-ZH-W01D1",
+    "Source_ID": "S002",
+    "Source_Type": "NEWS",
+    "Publisher": "中央社",
+    "Title": "中東戰事升溫 中油14日零時起汽油漲7角",
+    "URL": "https://www.cna.com.tw/news/ahel/202609120142.aspx",
+    "Source_Published_Date": "2026-09-12",
+    "Primary_Flag": "NO"
+  },
+  {
+    "Issue_ID": "2026-09-14-ZH-W01D1",
+    "Source_ID": "S003",
+    "Source_Type": "NEWS",
+    "Publisher": "中央社",
+    "Title": "台塑化：14日凌晨1時起 調漲汽油每公升0.7元柴油0.6元",
+    "URL": "https://www.cna.com.tw/news/afe/202609130086.aspx",
+    "Source_Published_Date": "2026-09-13",
+    "Primary_Flag": "NO"
+  },
+  {
+    "Issue_ID": "2026-09-15-EN-W01D2",
+    "Source_ID": "S001",
+    "Source_Type": "OFFICIAL",
+    "Publisher": "NASA Science",
+    "Title": "NASA, IBM Launch AI Foundation Model for Lunar Science",
+    "URL": "https://science.nasa.gov/science-research/artificial-intelligence-lunar-foundation-model/",
+    "Source_Published_Date": "2026-09-10",
+    "Primary_Flag": "YES"
+  },
+  {
+    "Issue_ID": "2026-09-15-EN-W01D2",
+    "Source_ID": "S002",
+    "Source_Type": "OFFICIAL",
+    "Publisher": "IBM Newsroom",
+    "Title": "IBM and NASA Release Open-Source AI Model to Support Lunar Exploration",
+    "URL": "https://newsroom.ibm.com/2026-09-10-ibm-and-nasa-release-open-source-ai-model-to-support-lunar-exploration",
+    "Source_Published_Date": "2026-09-10",
+    "Primary_Flag": "NO"
+  },
+  {
+    "Issue_ID": "2026-09-15-EN-W01D2",
+    "Source_ID": "S003",
+    "Source_Type": "NEWS",
+    "Publisher": "Reuters",
+    "Title": "IBM, NASA launch AI model to help map ice, craters on Moon",
+    "URL": "https://www.reuters.com/science/ibm-nasa-launch-ai-model-help-map-ice-craters-moon-2026-09-10/",
+    "Source_Published_Date": "2026-09-10",
+    "Primary_Flag": "NO"
+  }
+]

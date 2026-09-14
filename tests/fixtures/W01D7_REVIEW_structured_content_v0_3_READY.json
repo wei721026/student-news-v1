@@ -1,0 +1,141 @@
+{
+  "contract_version": "0.2",
+  "issue_id": "2026-09-20-REVIEW-W01D7",
+  "metadata": {
+    "publish_date": "2026-09-20",
+    "language": "REVIEW",
+    "region": "MIXED",
+    "categories": [
+      "週回顧",
+      "概念回收",
+      "中英混合"
+    ],
+    "difficulty": "STANDARD",
+    "interaction_style": "GUIDED_READING",
+    "version": "0.2-ready"
+  },
+  "source_issue_ids": [
+    "2026-09-14-ZH-W01D1",
+    "2026-09-15-EN-W01D2",
+    "2026-09-16-ZH-W01D3",
+    "2026-09-17-EN-W01D4",
+    "2026-09-18-ZH-W01D5",
+    "2026-09-19-EN-W01D6"
+  ],
+  "editorial": {
+    "headline": "本週世界整理｜你真的留下了什麼？",
+    "hook": "今天不讀新新聞，也不考分數。只把這週六件事重新叫回來。",
+    "quick_summary": "這週從油價、月球AI、流感疫苗、世界地圖、U18棒球到全球高溫，反覆練到同一個能力：先看資料真正說了什麼，再決定可以推到哪裡。"
+  },
+  "week_cards": [
+    {
+      "day": "MON / 中文",
+      "title": "油價",
+      "memory": "國際原油與加油站售價有關，但不是一個數字直接照搬。",
+      "concept": "多因素因果＋單位"
+    },
+    {
+      "day": "TUE / English",
+      "title": "Moon AI",
+      "memory": "estimate ≠ prove",
+      "concept": "AI是研究工具＋證據界線"
+    },
+    {
+      "day": "WED / 中文",
+      "title": "流感疫苗",
+      "memory": "疫苗怎麼設計，和政府怎麼安排公費優先，是兩個問題。",
+      "concept": "抗原／佐劑＋政策優先"
+    },
+    {
+      "day": "THU / English",
+      "title": "World Maps",
+      "memory": "encourages ≠ bans；不同投影各有取捨。",
+      "concept": "地圖投影＋對比閱讀"
+    },
+    {
+      "day": "FRI / 中文",
+      "title": "U18 Baseball",
+      "memory": "比分、局數、規則要一起看；規則不能脫離賽事情境。",
+      "concept": "比例＋條件判斷"
+    },
+    {
+      "day": "SAT / English",
+      "title": "August Heat",
+      "memory": "monthly anomaly ≠ long-term threshold",
+      "concept": "基準＋時間尺度"
+    }
+  ],
+  "recall": {
+    "events": [
+      "本週哪一篇讓你第一次發現『同一個數字可能有不同意思』？",
+      "哪一篇最像生活中真的會遇到的資訊？",
+      "哪一篇你最想再追蹤後續？"
+    ],
+    "english_words": [
+      {
+        "word": "estimate",
+        "prompt": "estimate 比較接近「估計／推估」還是「證明」？",
+        "answer": "估計／推估"
+      },
+      {
+        "word": "baseline",
+        "prompt": "baseline 在氣候資料裡的作用是什麼？",
+        "answer": "作為比較基準"
+      },
+      {
+        "word": "distort",
+        "prompt": "地圖投影中的 distort 是『產生比例／形狀變形』，不是自動等於『說謊』。",
+        "answer": "對"
+      }
+    ]
+  },
+  "connections": [
+    {
+      "title": "連結 1｜油價 × 氣候數字",
+      "question": "兩篇都提醒你：看到數字時，第一個要檢查什麼？",
+      "answer": "先看單位、比較基準和時間尺度；不能只看一個大數字就下結論。"
+    },
+    {
+      "title": "連結 2｜AI模型 × 世界地圖",
+      "question": "一個工具『有用』，是不是代表它適合所有任務？",
+      "answer": "不是。AI模型與地圖投影都要先問用途與限制。"
+    }
+  ],
+  "evidence_check": {
+    "prompt": "哪一句最符合這週反覆練到的資訊素養？",
+    "choices": [
+      "看到來源很多，就可以把任何說法都寫成事實。",
+      "資料支持到哪裡，結論就先停在哪裡。",
+      "新聞標題越肯定，代表證據一定越完整。"
+    ],
+    "answer": "資料支持到哪裡，結論就先停在哪裡。"
+  },
+  "one_week_prompt": "這週我最想繼續追蹤的一件事：____________________________",
+  "qa": {
+    "fact": {
+      "status": "PASS",
+      "method": "FACT_RESEARCH",
+      "reviewed_at": "2026-09-14",
+      "notes": "No new external facts were introduced; all content is derived from D1-D6 READY structured data."
+    },
+    "teaching": {
+      "status": "PASS",
+      "method": "DESK_REVIEW",
+      "reviewed_at": "2026-09-14",
+      "notes": "Review emphasizes retrieval and cross-news connections, not a weekly test."
+    },
+    "layout": {
+      "status": "PASS",
+      "method": "RENDER_REVIEW",
+      "reviewed_at": "2026-09-14",
+      "notes": "Sunday review rendered to 2 A4 page(s) at 200 DPI with no text blocks outside page bounds."
+    }
+  },
+  "render": {
+    "pdf_ready": true,
+    "html_public": false,
+    "audio_enabled": false,
+    "pdf_file": "W01D7_REVIEW_print_READY.pdf",
+    "html_file": "W01D7_REVIEW_internal_preview.html"
+  }
+}

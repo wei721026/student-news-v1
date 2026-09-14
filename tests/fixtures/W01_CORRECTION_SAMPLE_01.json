@@ -1,0 +1,29 @@
+{
+  "sample_id": "2026-09-14-CORRTEST-001",
+  "type": "SIMULATED_WORKFLOW_TEST",
+  "warning": "This is not an actual published error and does not alter W01D1. It exists only to test the correction/version mechanism.",
+  "based_on_issue": "2026-09-14-ZH-W01D1",
+  "source_of_truth": {
+    "claim_id": "C002",
+    "verified_value": "92無鉛參考零售價 31.2 元／公升"
+  },
+  "simulated_v1_0": {
+    "version": "1.0-test",
+    "student_text": "92無鉛參考零售價 32.1 元／公升",
+    "status": "SIMULATED_PUBLISHED_WITH_TYPO",
+    "problem": "Render/content transcription typo does not match verified Claim C002."
+  },
+  "detection": {
+    "method": "POST_PUBLISH_CLAIM_RECHECK",
+    "result": "MISMATCH",
+    "action": "CORRECTION_REQUIRED"
+  },
+  "simulated_v1_1": {
+    "version": "1.1-test",
+    "corrected_student_text": "92無鉛參考零售價 31.2 元／公升",
+    "correction_note": "測試更正：32.1 → 31.2；依 Verified Claim C002 修正。",
+    "old_version_retained": true,
+    "latest_version_pointer": "1.1-test"
+  },
+  "workflow_result": "PASS"
+}

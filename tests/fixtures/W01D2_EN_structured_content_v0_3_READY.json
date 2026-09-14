@@ -1,0 +1,256 @@
+{
+  "contract_version": "0.2",
+  "issue_id": "2026-09-15-EN-W01D2",
+  "metadata": {
+    "publish_date": "2026-09-15",
+    "language": "en",
+    "region": "WORLD",
+    "categories": [
+      "space",
+      "AI",
+      "science",
+      "data literacy"
+    ],
+    "difficulty": "STANDARD",
+    "reading_target": "A2-B1",
+    "interaction_style": "LANGUAGE_SCAFFOLD",
+    "version": "0.3-ready"
+  },
+  "lifecycle": {
+    "time_sensitivity": "SLOW",
+    "event_date": "2026-09-10",
+    "review_after": "2026-10-15",
+    "last_rechecked_at": "2026-09-14",
+    "correction_required": false
+  },
+  "evidence_maturity": "PUBLISHED_RESEARCH",
+  "editorial": {
+    "headline": "Can AI Help Scientists Read the Moon?",
+    "hook": "NASA and IBM released a new AI tool for Moon science. It helps researchers work with huge amounts of lunar data.",
+    "quick_summary": "NASA and IBM released an open-source AI model for lunar science. It can help researchers map craters, study volcanic features, and estimate places where ice may be stable near the Moon's poles."
+  },
+  "background": [],
+  "sections": [
+    {
+      "section_id": "S1",
+      "role": "CORE",
+      "title": "What did NASA and IBM release?",
+      "text": "The NASA-IBM Lunar Foundation Model is an open-source AI model for Moon research. NASA says it was trained mainly on Lunar Reconnaissance Orbiter data, including roughly two million image tiles from years of observations.",
+      "claim_refs": [
+        "C001",
+        "C002",
+        "C003"
+      ],
+      "print_priority": "REQUIRED",
+      "audio_priority": "FULL",
+      "checkpoint": {
+        "enabled": true,
+        "style": "MCQ",
+        "prompt": "What is the model mainly designed to help scientists do?",
+        "choices": [
+          "Analyze large amounts of lunar data",
+          "Move the Moon closer to Earth",
+          "Replace every lunar scientist"
+        ],
+        "answer": "Analyze large amounts of lunar data",
+        "explanation": "The model is a research tool for working with Moon data."
+      }
+    },
+    {
+      "section_id": "S2",
+      "role": "CORE",
+      "title": "What can the model help study?",
+      "text": "Researchers can adapt the model to map craters, spot unusual volcanic features, and estimate where ice may be stable near the Moon's poles. That word estimate matters: the model can point to promising places, but a prediction is not the same as direct proof of ice.",
+      "claim_refs": [
+        "C005",
+        "C006"
+      ],
+      "print_priority": "REQUIRED",
+      "audio_priority": "FULL",
+      "checkpoint": {
+        "enabled": true,
+        "style": "INLINE",
+        "prompt": "Stop & Check: Does 'estimate where ice may exist' mean 'prove ice is there'?",
+        "choices": [],
+        "answer": "No.",
+        "explanation": "An estimate is evidence-based, but it is not the same as direct confirmation."
+      }
+    },
+    {
+      "section_id": "S3",
+      "role": "EXTENSION",
+      "title": "Extension: What does 'open-source' change?",
+      "text": "NASA and IBM made the model publicly available so researchers can test, adapt, and compare it. They also released machine-learning-ready data and benchmark materials. This can make it easier for research teams to build on the same tools instead of starting from zero.",
+      "claim_refs": [
+        "C001",
+        "C002",
+        "C004"
+      ],
+      "print_priority": "OPTIONAL",
+      "audio_priority": "OPTIONAL",
+      "checkpoint": {
+        "enabled": false,
+        "style": "NONE",
+        "prompt": "",
+        "choices": [],
+        "answer": "",
+        "explanation": ""
+      }
+    }
+  ],
+  "levels": {
+    "basic": {
+      "enabled": true,
+      "prompt": "Find the fact: Name one lunar feature the model can help scientists study.",
+      "answer": "Examples include craters, volcanic features, or possible stable ice areas near the poles."
+    },
+    "standard": {
+      "enabled": true,
+      "prompt": "Why is the word 'estimate' important in this article?",
+      "answer": "Because the model can suggest likely locations, but its output is not direct proof that ice is present."
+    },
+    "challenge": {
+      "enabled": true,
+      "prompt": "Which headline goes too far? A. AI model helps researchers study Moon data. B. AI proves where water ice is hidden on the Moon.",
+      "answer": "B goes too far. The sources say the model can estimate where ice may be stable, not prove ice at every location."
+    }
+  },
+  "rescue": {
+    "hint_1": "First find the main subject and verb: 'The model ... can help ...'",
+    "hint_2": "Watch evidence words such as can, may, and estimate. They show that a claim is limited.",
+    "summary": "Main idea: NASA and IBM made an AI tool that helps scientists work with large Moon datasets, but its predictions still need scientific interpretation."
+  },
+  "language_support": {
+    "enabled": true,
+    "key_words": [
+      {
+        "word": "lunar",
+        "part_of_speech": "adj.",
+        "meaning_zh": "月球的",
+        "example": "The model studies lunar data.",
+        "print_mode": "WORD_MEANING"
+      },
+      {
+        "word": "surface",
+        "part_of_speech": "n.",
+        "meaning_zh": "表面",
+        "example": "Scientists map the Moon's surface.",
+        "print_mode": "WORD_MEANING"
+      },
+      {
+        "word": "crater",
+        "part_of_speech": "n.",
+        "meaning_zh": "隕石坑；撞擊坑",
+        "example": "The model can help map craters.",
+        "print_mode": "WORD_MEANING"
+      },
+      {
+        "word": "estimate",
+        "part_of_speech": "v.",
+        "meaning_zh": "估計；推估",
+        "example": "The model can estimate where ice may be stable.",
+        "print_mode": "WORD_MEANING"
+      },
+      {
+        "word": "open-source",
+        "part_of_speech": "adj.",
+        "meaning_zh": "開放原始碼的",
+        "example": "Researchers can test the open-source model.",
+        "print_mode": "WORD_MEANING"
+      }
+    ],
+    "focus_sentence": "Because the model is already trained on lunar data, scientists can adapt it to map craters and estimate where ice may be stable.",
+    "sentence_breakdown": {
+      "Because": "the model is already trained on lunar data",
+      "Who": "scientists",
+      "Main verb": "can adapt",
+      "For what": "map craters; estimate stable ice areas"
+    },
+    "zh_rescue_summary": "NASA與IBM發布一個用於月球科學的開源AI模型。它主要利用多年累積的月球觀測資料，協助研究者繪製隕石坑、辨識火山特徵，並推估月球極區哪些地方可能適合冰長期存在。重點是：推估不等於直接證明，AI仍是科學家的工具。"
+  },
+  "derived_data": [],
+  "provenance": {
+    "claim_ids": [
+      "C001",
+      "C002",
+      "C003",
+      "C004",
+      "C005",
+      "C006",
+      "C007"
+    ],
+    "source_ids": [
+      "S001",
+      "S002",
+      "S003"
+    ],
+    "evidence_conflicts": [],
+    "uncertainties": [
+      "The 23% figure applies to benchmark comparisons on some tasks, not every possible Moon-science task.",
+      "Ice estimates are model outputs and should not be described as direct confirmation."
+    ]
+  },
+  "exam_connection": {
+    "enabled": true,
+    "subjects": [
+      "English reading",
+      "science",
+      "AI literacy",
+      "media literacy"
+    ],
+    "note": "Possible questions: main idea, meaning of 'estimate', what 'open-source' changes, or whether a headline claims more than the evidence supports."
+  },
+  "concept_ids": [
+    "AI-FOUNDATION-MODEL",
+    "EVIDENCE-ESTIMATE-NOT-PROOF",
+    "LUNAR-DATA"
+  ],
+  "one_thing_prompt": "One thing I learned today: ____________________________",
+  "completion": {
+    "core_complete_rule": "quick_summary + 5 key words + focus sentence + S1 + checkpoint + S2 + inline check",
+    "student_checkbox_label": "□ Core complete"
+  },
+  "visual_spec": {
+    "mode": "DATA_CARDS",
+    "purpose": "Use 2 million image tiles / 17 years of data / 3 example tasks as a visual entry point.",
+    "rights_status": "NOT_APPLICABLE",
+    "required_for_understanding": false,
+    "alt_text": "Data cards showing the scale of lunar observations and example research tasks."
+  },
+  "presentation": {
+    "print_profile": "A4_TWO_PAGE",
+    "core_must_end_page_1": true,
+    "main_text_min_pt": 15.4,
+    "source_text_min_pt": 11.5,
+    "student_visible_source_mode": "COMPACT",
+    "answers": "SELF_CHECK",
+    "overflow_policy": "REVISE_CONTENT_NOT_FONT"
+  },
+  "qa": {
+    "fact": {
+      "status": "PASS",
+      "method": "FACT_RESEARCH",
+      "reviewed_at": "2026-09-14",
+      "notes": "Core release facts and use cases verified against NASA, IBM and Reuters."
+    },
+    "teaching": {
+      "status": "PASS",
+      "method": "DESK_REVIEW",
+      "reviewed_at": "2026-09-14",
+      "notes": "The Core emphasizes can/may/estimate so English learning and evidence literacy reinforce each other."
+    },
+    "layout": {
+      "status": "PASS",
+      "method": "RENDER_REVIEW",
+      "reviewed_at": "2026-09-14",
+      "notes": "First render was 3 pages. Final v0.3 kept the main reading text at 15.4 pt, tightened framing/repeated copy, and rendered to 2 A4 pages with Core ending on page 1."
+    }
+  },
+  "render": {
+    "pdf_ready": true,
+    "html_public": false,
+    "audio_enabled": false,
+    "pdf_file": "W01D2_EN_print_READY_v2.pdf",
+    "html_file": "W01D2_EN_internal_preview_v2.html"
+  }
+}

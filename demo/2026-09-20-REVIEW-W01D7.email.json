@@ -1,0 +1,46 @@
+{
+  "issue_id": "2026-09-20-REVIEW-W01D7",
+  "date": "2026-09-20",
+  "version": "0.2-ready",
+  "headline": "本週世界整理｜你真的留下了什麼？",
+  "quick_start": "這週從油價、月球AI、流感疫苗、世界地圖、U18棒球到全球高溫，反覆練到同一個能力：先看資料真正說了什麼，再決定可以推到哪裡。",
+  "sources": [],
+  "kind": "REVIEW",
+  "events": [
+    {
+      "title": "油價",
+      "memory": "國際原油與加油站售價有關，但不是一個數字直接照搬。"
+    },
+    {
+      "title": "Moon AI",
+      "memory": "estimate ≠ prove"
+    },
+    {
+      "title": "流感疫苗",
+      "memory": "疫苗怎麼設計，和政府怎麼安排公費優先，是兩個問題。"
+    },
+    {
+      "title": "World Maps",
+      "memory": "encourages ≠ bans；不同投影各有取捨。"
+    },
+    {
+      "title": "U18 Baseball",
+      "memory": "比分、局數、規則要一起看；規則不能脫離賽事情境。"
+    }
+  ],
+  "concepts": [
+    "多因素因果＋單位",
+    "AI是研究工具＋證據界線",
+    "抗原／佐劑＋政策優先"
+  ],
+  "english_words": [
+    "estimate",
+    "baseline"
+  ],
+  "connection": {
+    "title": "連結 1｜油價 × 氣候數字",
+    "question": "兩篇都提醒你：看到數字時，第一個要檢查什麼？",
+    "answer": "先看單位、比較基準和時間尺度；不能只看一個大數字就下結論。"
+  },
+  "curiosity_prompt": "這週我最想繼續追蹤的一件事：____________________________"
+}

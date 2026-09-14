@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Can AI Help Scientists Read the Moon?</title>
+<style>
+:root {
+  color-scheme: light;
+  --ink:#17202a; --muted:#5d6773; --line:#dce2e8; --soft:#f5f7f9;
+  --accent:#174f78; --warn:#fff6df; --warn-line:#d89c24;
+}
+* { box-sizing:border-box; }
+html, body { margin:0; padding:0; max-width:100%; overflow-x:hidden; }
+body {
+  font-family: system-ui, -apple-system, "Noto Sans TC", "Noto Sans CJK TC", "Segoe UI", sans-serif;
+  color:var(--ink); background:#fff; font-size:clamp(1.08rem, .98rem + .38vw, 1.26rem);
+  line-height:1.68; overflow-wrap:break-word;
+}
+main { width:min(calc(100% - 2rem), 74ch); margin:0 auto; padding:1.25rem 0 3rem; }
+header { border-bottom:1px solid var(--line); padding-bottom:1rem; margin-bottom:1rem; }
+.meta { display:flex; flex-wrap:wrap; gap:.35rem .8rem; color:var(--muted); font-size:.86em; }
+h1 { font-size:clamp(1.85rem, 1.45rem + 1.4vw, 2.65rem); line-height:1.16; margin:.45rem 0; }
+h2 { font-size:1.36em; line-height:1.28; margin:1.45rem 0 .45rem; }
+h3 { font-size:1.08em; margin:1rem 0 .35rem; }
+p { margin:.45rem 0 .85rem; }
+.quick, .hook, .card, .checkpoint, details, .source-card, .correction {
+  border:1px solid var(--line); border-radius:.75rem; padding:.9rem 1rem; margin:.85rem 0;
+}
+.quick { background:var(--soft); }
+.hook { border-left:.38rem solid var(--accent); }
+.badge {
+  display:inline-block; border:1px solid var(--line); border-radius:999px;
+  padding:.08rem .5rem; margin:.12rem .2rem .12rem 0; font-size:.82em;
+}
+.core-label { font-weight:800; color:var(--accent); letter-spacing:.02em; }
+.section-text { white-space:pre-line; }
+button {
+  font:inherit; min-height:44px; border:1px solid #9aa8b5; background:#fff; color:var(--ink);
+  border-radius:.6rem; padding:.5rem .8rem; cursor:pointer;
+}
+button:hover, button:focus-visible { outline:3px solid #b8d9ee; outline-offset:2px; }
+.answer { margin-top:.55rem; padding:.75rem; background:var(--soft); border-radius:.55rem; }
+details > summary { cursor:pointer; font-weight:800; min-height:44px; display:flex; align-items:center; }
+details[open] > summary { margin-bottom:.65rem; }
+.source-card { font-size:.88em; }
+.source-card a, a { color:#0b5e93; overflow-wrap:anywhere; }
+.footer-actions { display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin-top:1.2rem; }
+.download {
+  display:inline-block; padding:.65rem .9rem; border-radius:.6rem;
+  background:#174f78; color:#fff; text-decoration:none; font-weight:800;
+}
+.correction { background:var(--warn); border-color:var(--warn-line); }
+img, svg, video, iframe, table { max-width:100%; height:auto; }
+pre { max-width:100%; overflow:auto; }
+ul, ol { padding-left:1.35rem; }
+.core-complete { font-weight:800; margin:1.2rem 0; }
+.week-card { border-left:.35rem solid #7b8794; padding:.55rem .8rem; margin:.55rem 0; background:var(--soft); }
+@media (max-width:420px) {
+  body { font-size:1.08rem; }
+  main { width:calc(100% - 1rem); padding-top:.65rem; }
+  .quick, .hook, .card, .checkpoint, details, .source-card, .correction {
+    padding:.75rem .8rem; border-radius:.62rem;
+  }
+  .meta { display:grid; grid-template-columns:1fr; gap:.15rem; }
+  .footer-actions, button, .download { width:100%; }
+}
+@media print {
+  body { font-size:12pt; }
+  main { width:100%; padding:0; }
+  button { display:none; }
+  .answer[hidden] { display:none !important; }
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="meta"><span>2026-09-15</span><span>en</span><span>space / AI / science / data literacy</span><span>Version 0.3-ready</span><span>Last checked 2026-09-14</span></div>
+<h1>Can AI Help Scientists Read the Moon?</h1>
+<div class="hook">NASA and IBM released a new AI tool for Moon science. It helps researchers work with huge amounts of lunar data.</div>
+<div class="quick"><strong>Quick Start</strong><p>NASA and IBM released an open-source AI model for lunar science. It can help researchers map craters, study volcanic features, and estimate places where ice may be stable near the Moon&#x27;s poles.</p></div>
+</header>
+
+<section aria-labelledby='words-title'><h2 id='words-title'>5 Words</h2><div><span class="badge"><strong>lunar</strong> — 月球的</span><span class="badge"><strong>surface</strong> — 表面</span><span class="badge"><strong>crater</strong> — 隕石坑；撞擊坑</span><span class="badge"><strong>estimate</strong> — 估計；推估</span><span class="badge"><strong>open-source</strong> — 開放原始碼的</span></div><div class="card"><strong>Focus Sentence</strong><p>Because the model is already trained on lunar data, scientists can adapt it to map craters and estimate where ice may be stable.</p></div></section><section aria-labelledby="core-title"><h2 id="core-title"><span class="core-label">Core</span></h2><article><h2>What did NASA and IBM release?</h2><p class="section-text">The NASA-IBM Lunar Foundation Model is an open-source AI model for Moon research. NASA says it was trained mainly on Lunar Reconnaissance Orbiter data, including roughly two million image tiles from years of observations.</p><div class="checkpoint"><h3>Checkpoint</h3><p>What is the model mainly designed to help scientists do?</p><ol><li>Analyze large amounts of lunar data</li><li>Move the Moon closer to Earth</li><li>Replace every lunar scientist</li></ol><button type="button" aria-expanded="false" data-answer-target="answer-core-1" data-show-label="Check answer" data-hide-label="Hide answer">Check answer</button><div id="answer-core-1" class="answer" hidden><strong>Analyze large amounts of lunar data</strong><div><strong>Why：</strong>The model is a research tool for working with Moon data.</div></div></div></article><article><h2>What can the model help study?</h2><p class="section-text">Researchers can adapt the model to map craters, spot unusual volcanic features, and estimate where ice may be stable near the Moon&#x27;s poles. That word estimate matters: the model can point to promising places, but a prediction is not the same as direct proof of ice.</p><div class="checkpoint"><h3>Checkpoint</h3><p>Stop &amp; Check: Does &#x27;estimate where ice may exist&#x27; mean &#x27;prove ice is there&#x27;?</p><button type="button" aria-expanded="false" data-answer-target="answer-core-2" data-show-label="Check answer" data-hide-label="Hide answer">Check answer</button><div id="answer-core-2" class="answer" hidden><strong>No.</strong><div><strong>Why：</strong>An estimate is evidence-based, but it is not the same as direct confirmation.</div></div></div></article><div class="core-complete"><label><input type="checkbox"> □ Core complete</label></div></section><details class="extension"><summary>Extension / 延伸閱讀</summary><article><h2>Extension: What does &#x27;open-source&#x27; change?</h2><p class="section-text">NASA and IBM made the model publicly available so researchers can test, adapt, and compare it. They also released machine-learning-ready data and benchmark materials. This can make it easier for research teams to build on the same tools instead of starting from zero.</p></article><div class="card"><strong>Basic</strong><p>Find the fact: Name one lunar feature the model can help scientists study.</p><button type="button" aria-expanded="false" data-answer-target="answer-level-basic" data-show-label="Check answer" data-hide-label="Hide answer">Check answer</button><div id="answer-level-basic" class="answer" hidden><strong>Examples include craters, volcanic features, or possible stable ice areas near the poles.</strong></div></div><div class="card"><strong>Standard</strong><p>Why is the word &#x27;estimate&#x27; important in this article?</p><button type="button" aria-expanded="false" data-answer-target="answer-level-standard" data-show-label="Check answer" data-hide-label="Hide answer">Check answer</button><div id="answer-level-standard" class="answer" hidden><strong>Because the model can suggest likely locations, but its output is not direct proof that ice is present.</strong></div></div><div class="card"><strong>Challenge</strong><p>Which headline goes too far? A. AI model helps researchers study Moon data. B. AI proves where water ice is hidden on the Moon.</p><button type="button" aria-expanded="false" data-answer-target="answer-level-challenge" data-show-label="Check answer" data-hide-label="Hide answer">Check answer</button><div id="answer-level-challenge" class="answer" hidden><strong>B goes too far. The sources say the model can estimate where ice may be stable, not prove ice at every location.</strong></div></div><div class="card"><strong>Exam connection</strong><p>English reading / science / AI literacy / media literacy</p><p>Possible questions: main idea, meaning of &#x27;estimate&#x27;, what &#x27;open-source&#x27; changes, or whether a headline claims more than the evidence supports.</p></div></details><details class="rescue"><summary>I&#x27;M STUCK</summary><p>First find the main subject and verb: &#x27;The model ... can help ...&#x27;</p><p>Watch evidence words such as can, may, and estimate. They show that a claim is limited.</p><p>Main idea: NASA and IBM made an AI tool that helps scientists work with large Moon datasets, but its predictions still need scientific interpretation.</p></details><details class="zh-rescue"><summary>中文救援｜真的卡住再看</summary><p>NASA與IBM發布一個用於月球科學的開源AI模型。它主要利用多年累積的月球觀測資料，協助研究者繪製隕石坑、辨識火山特徵，並推估月球極區哪些地方可能適合冰長期存在。重點是：推估不等於直接證明，AI仍是科學家的工具。</p></details><div class="card"><strong>One Thing</strong><p>One thing I learned today: ____________________________</p></div>
+<section aria-labelledby="sources-title"><h2 id="sources-title">Sources</h2><div class="source-card"><strong>NASA Science</strong> · 2026-09-10<br><a href="https://science.nasa.gov/science-research/artificial-intelligence-lunar-foundation-model/" target="_blank" rel="noopener noreferrer">NASA, IBM Launch AI Foundation Model for Lunar Science</a></div><div class="source-card"><strong>IBM Newsroom</strong> · 2026-09-10<br><a href="https://newsroom.ibm.com/2026-09-10-ibm-and-nasa-release-open-source-ai-model-to-support-lunar-exploration" target="_blank" rel="noopener noreferrer">IBM and NASA Release Open-Source AI Model to Support Lunar Exploration</a></div><div class="source-card"><strong>Reuters</strong> · 2026-09-10<br><a href="https://www.reuters.com/science/ibm-nasa-launch-ai-model-help-map-ice-craters-moon-2026-09-10/" target="_blank" rel="noopener noreferrer">IBM, NASA launch AI model to help map ice, craters on Moon</a></div></section>
+<footer>
+<div class="footer-actions">
+<a class="download" href="./2026-09-15-EN-W01D2.pdf">PDF download / 下載 PDF</a>
+<span>Version 0.3-ready</span>
+<span>Last checked 2026-09-14</span>
+</div>
+</footer>
+</main>
+<script>
+document.addEventListener("click", function (event) {
+  const btn = event.target.closest("[data-answer-target]");
+  if (!btn) return;
+  const id = btn.getAttribute("data-answer-target");
+  const answer = document.getElementById(id);
+  if (!answer) return;
+  const opening = answer.hasAttribute("hidden");
+  if (opening) answer.removeAttribute("hidden"); else answer.setAttribute("hidden", "");
+  btn.setAttribute("aria-expanded", opening ? "true" : "false");
+  btn.textContent = opening ? (btn.dataset.hideLabel || "Hide answer") : (btn.dataset.showLabel || "View answer");
+});
+</script>
+</body>
+</html>

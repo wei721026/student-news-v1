@@ -1,0 +1,191 @@
+{
+  "contract_version": "1.0",
+  "issue_id": "YYYY-MM-DD-LANG-NNN",
+  "metadata": {
+    "publish_date": "YYYY-MM-DD",
+    "language": "zh-TW | en",
+    "region": "TW | WORLD | MIXED",
+    "categories": [
+      "string"
+    ],
+    "difficulty": "BASIC | STANDARD | CHALLENGE",
+    "reading_target": "optional string",
+    "interaction_style": "GUIDED_READING | LANGUAGE_SCAFFOLD | POLICY_MODEL | MYSTERY_DISCOVERY | DATA_STORY | MAP_STORY",
+    "version": "1.0"
+  },
+  "lifecycle": {
+    "time_sensitivity": "EVERGREEN | SLOW | TIME_SENSITIVE",
+    "event_date": "YYYY-MM-DD | null",
+    "review_after": "YYYY-MM-DD | null",
+    "last_rechecked_at": "ISO-8601 | null",
+    "correction_required": false
+  },
+  "evidence_maturity": "ESTABLISHED | PUBLISHED_RESEARCH | OFFICIAL_PRELIMINARY | DEVELOPING_EVENT",
+  "editorial": {
+    "headline": "string",
+    "hook": "string",
+    "quick_summary": "string"
+  },
+  "background": [
+    {
+      "term": "string",
+      "explanation": "string",
+      "type": "NEWS_CONTEXT | STABLE_KNOWLEDGE",
+      "claim_refs": [
+        "C001"
+      ],
+      "role": "CORE | EXTENSION"
+    }
+  ],
+  "sections": [
+    {
+      "section_id": "S1",
+      "role": "CORE | EXTENSION",
+      "title": "string",
+      "text": "string",
+      "claim_refs": [
+        "C001"
+      ],
+      "print_priority": "REQUIRED | OPTIONAL | OMIT",
+      "audio_priority": "FULL | OPTIONAL | NONE",
+      "checkpoint": {
+        "enabled": true,
+        "style": "MCQ | SHORT | INLINE | NONE",
+        "prompt": "string",
+        "choices": [
+          "string"
+        ],
+        "answer": "string",
+        "explanation": "string"
+      }
+    }
+  ],
+  "levels": {
+    "basic": {
+      "enabled": true,
+      "prompt": "string",
+      "answer": "string"
+    },
+    "standard": {
+      "enabled": true,
+      "prompt": "string",
+      "answer": "string"
+    },
+    "challenge": {
+      "enabled": true,
+      "prompt": "string",
+      "answer": "string"
+    }
+  },
+  "rescue": {
+    "hint_1": "string",
+    "hint_2": "string",
+    "summary": "string"
+  },
+  "language_support": {
+    "enabled": false,
+    "key_words": [
+      {
+        "word": "string",
+        "part_of_speech": "string",
+        "meaning_zh": "string",
+        "example": "string",
+        "print_mode": "WORD_MEANING | FULL"
+      }
+    ],
+    "focus_sentence": "string | null",
+    "sentence_breakdown": {},
+    "zh_rescue_summary": "string | null"
+  },
+  "derived_data": [
+    {
+      "id": "D001",
+      "expression": "string",
+      "result": "string",
+      "based_on_claim_ids": [
+        "C001"
+      ]
+    }
+  ],
+  "provenance": {
+    "claim_ids": [
+      "C001"
+    ],
+    "source_ids": [
+      "S001"
+    ],
+    "evidence_conflicts": [
+      {
+        "conflicting_claim": "string",
+        "source_ids": [
+          "S001",
+          "S002"
+        ],
+        "resolution": "string",
+        "rationale": "string"
+      }
+    ],
+    "uncertainties": [
+      "string"
+    ]
+  },
+  "exam_connection": {
+    "enabled": true,
+    "subjects": [
+      "string"
+    ],
+    "note": "string"
+  },
+  "concept_ids": [
+    "CONCEPT-ID"
+  ],
+  "one_thing_prompt": "string",
+  "completion": {
+    "core_complete_rule": "string",
+    "student_checkbox_label": "string"
+  },
+  "visual_spec": {
+    "mode": "NONE | DATA_CARDS | MAP | PHOTO | DIAGRAM",
+    "purpose": "string",
+    "rights_status": "NOT_APPLICABLE | OWNED | LICENSED | OFFICIAL_REUSE_OK | LINK_ONLY | UNKNOWN",
+    "required_for_understanding": false,
+    "alt_text": "string"
+  },
+  "presentation": {
+    "print_profile": "A4_TWO_PAGE",
+    "core_must_end_page_1": true,
+    "main_text_min_pt": 15.4,
+    "source_text_min_pt": 11.5,
+    "student_visible_source_mode": "COMPACT",
+    "answers": "SELF_CHECK | HIDDEN_IN_HTML | SEPARATE",
+    "overflow_policy": "REVISE_CONTENT_NOT_FONT"
+  },
+  "qa": {
+    "fact": {
+      "status": "PENDING | PASS | REVISE | BLOCK",
+      "method": "FACT_RESEARCH",
+      "reviewed_at": "ISO-8601 | null",
+      "notes": "string"
+    },
+    "teaching": {
+      "status": "PENDING | PASS | REVISE | BLOCK",
+      "method": "DESK_REVIEW | HUMAN_REVIEW",
+      "reviewed_at": "ISO-8601 | null",
+      "notes": "string"
+    },
+    "layout": {
+      "status": "PENDING | PASS | REVISE | BLOCK",
+      "method": "RENDER_REVIEW | HUMAN_REVIEW",
+      "reviewed_at": "ISO-8601 | null",
+      "notes": "string"
+    }
+  },
+  "render": {
+    "pdf_ready": false,
+    "html_public": false,
+    "audio_enabled": false,
+    "pdf_file": null,
+    "html_file": null
+  },
+  "freeze_note": "Schema frozen after P01-P04 and One-Week Trial D1-D7. No structural schema changes were required during the seven-day trial."
+}

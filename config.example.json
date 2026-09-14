@@ -1,0 +1,15 @@
+{
+  "timezone": "Asia/Taipei",
+  "publish_mode": "APPROVAL",
+  "daily_start": "05:00",
+  "publish_deadline": "06:45",
+  "max_candidates": 3,
+  "max_teaching_revisions": 2,
+  "max_layout_revisions": 2,
+  "models": {
+    "discovery": "gpt-5.6-luna",
+    "verify": "gpt-5.6-terra",
+    "draft": "gpt-5.6-terra",
+    "qa": "gpt-5.6-terra"
+  }
+}

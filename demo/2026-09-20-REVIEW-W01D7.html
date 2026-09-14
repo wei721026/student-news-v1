@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本週世界整理｜你真的留下了什麼？</title>
+<style>
+:root {
+  color-scheme: light;
+  --ink:#17202a; --muted:#5d6773; --line:#dce2e8; --soft:#f5f7f9;
+  --accent:#174f78; --warn:#fff6df; --warn-line:#d89c24;
+}
+* { box-sizing:border-box; }
+html, body { margin:0; padding:0; max-width:100%; overflow-x:hidden; }
+body {
+  font-family: system-ui, -apple-system, "Noto Sans TC", "Noto Sans CJK TC", "Segoe UI", sans-serif;
+  color:var(--ink); background:#fff; font-size:clamp(1.08rem, .98rem + .38vw, 1.26rem);
+  line-height:1.68; overflow-wrap:break-word;
+}
+main { width:min(calc(100% - 2rem), 74ch); margin:0 auto; padding:1.25rem 0 3rem; }
+header { border-bottom:1px solid var(--line); padding-bottom:1rem; margin-bottom:1rem; }
+.meta { display:flex; flex-wrap:wrap; gap:.35rem .8rem; color:var(--muted); font-size:.86em; }
+h1 { font-size:clamp(1.85rem, 1.45rem + 1.4vw, 2.65rem); line-height:1.16; margin:.45rem 0; }
+h2 { font-size:1.36em; line-height:1.28; margin:1.45rem 0 .45rem; }
+h3 { font-size:1.08em; margin:1rem 0 .35rem; }
+p { margin:.45rem 0 .85rem; }
+.quick, .hook, .card, .checkpoint, details, .source-card, .correction {
+  border:1px solid var(--line); border-radius:.75rem; padding:.9rem 1rem; margin:.85rem 0;
+}
+.quick { background:var(--soft); }
+.hook { border-left:.38rem solid var(--accent); }
+.badge {
+  display:inline-block; border:1px solid var(--line); border-radius:999px;
+  padding:.08rem .5rem; margin:.12rem .2rem .12rem 0; font-size:.82em;
+}
+.core-label { font-weight:800; color:var(--accent); letter-spacing:.02em; }
+.section-text { white-space:pre-line; }
+button {
+  font:inherit; min-height:44px; border:1px solid #9aa8b5; background:#fff; color:var(--ink);
+  border-radius:.6rem; padding:.5rem .8rem; cursor:pointer;
+}
+button:hover, button:focus-visible { outline:3px solid #b8d9ee; outline-offset:2px; }
+.answer { margin-top:.55rem; padding:.75rem; background:var(--soft); border-radius:.55rem; }
+details > summary { cursor:pointer; font-weight:800; min-height:44px; display:flex; align-items:center; }
+details[open] > summary { margin-bottom:.65rem; }
+.source-card { font-size:.88em; }
+.source-card a, a { color:#0b5e93; overflow-wrap:anywhere; }
+.footer-actions { display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin-top:1.2rem; }
+.download {
+  display:inline-block; padding:.65rem .9rem; border-radius:.6rem;
+  background:#174f78; color:#fff; text-decoration:none; font-weight:800;
+}
+.correction { background:var(--warn); border-color:var(--warn-line); }
+img, svg, video, iframe, table { max-width:100%; height:auto; }
+pre { max-width:100%; overflow:auto; }
+ul, ol { padding-left:1.35rem; }
+.core-complete { font-weight:800; margin:1.2rem 0; }
+.week-card { border-left:.35rem solid #7b8794; padding:.55rem .8rem; margin:.55rem 0; background:var(--soft); }
+@media (max-width:420px) {
+  body { font-size:1.08rem; }
+  main { width:calc(100% - 1rem); padding-top:.65rem; }
+  .quick, .hook, .card, .checkpoint, details, .source-card, .correction {
+    padding:.75rem .8rem; border-radius:.62rem;
+  }
+  .meta { display:grid; grid-template-columns:1fr; gap:.15rem; }
+  .footer-actions, button, .download { width:100%; }
+}
+@media print {
+  body { font-size:12pt; }
+  main { width:100%; padding:0; }
+  button { display:none; }
+  .answer[hidden] { display:none !important; }
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="meta"><span>2026-09-20</span><span>REVIEW</span><span>週回顧 / 概念回收 / 中英混合</span><span>Version 0.2-ready</span><span>Last checked </span></div>
+<h1>本週世界整理｜你真的留下了什麼？</h1>
+<div class="hook">今天不讀新新聞，也不考分數。只把這週六件事重新叫回來。</div>
+<div class="quick"><strong>30 秒先懂</strong><p>這週從油價、月球AI、流感疫苗、世界地圖、U18棒球到全球高溫，反覆練到同一個能力：先看資料真正說了什麼，再決定可以推到哪裡。</p></div>
+</header>
+
+<section><h2>本週 3–5 件事</h2><div class="week-card"><strong>MON / 中文 · 油價</strong><p>國際原油與加油站售價有關，但不是一個數字直接照搬。</p><p><small>多因素因果＋單位</small></p></div><div class="week-card"><strong>TUE / English · Moon AI</strong><p>estimate ≠ prove</p><p><small>AI是研究工具＋證據界線</small></p></div><div class="week-card"><strong>WED / 中文 · 流感疫苗</strong><p>疫苗怎麼設計，和政府怎麼安排公費優先，是兩個問題。</p><p><small>抗原／佐劑＋政策優先</small></p></div><div class="week-card"><strong>THU / English · World Maps</strong><p>encourages ≠ bans；不同投影各有取捨。</p><p><small>地圖投影＋對比閱讀</small></p></div><div class="week-card"><strong>FRI / 中文 · U18 Baseball</strong><p>比分、局數、規則要一起看；規則不能脫離賽事情境。</p><p><small>比例＋條件判斷</small></p></div></section><section><h2>Recall</h2><ul><li>本週哪一篇讓你第一次發現『同一個數字可能有不同意思』？</li><li>哪一篇最像生活中真的會遇到的資訊？</li><li>哪一篇你最想再追蹤後續？</li></ul></section><section><h2>English Recall</h2><div class="checkpoint"><strong>estimate</strong><p>estimate 比較接近「估計／推估」還是「證明」？</p><button type="button" aria-expanded="false" data-answer-target="answer-review-word-1" data-show-label="Check answer" data-hide-label="Hide answer">Check answer</button><div id="answer-review-word-1" class="answer" hidden><strong>估計／推估</strong></div></div><div class="checkpoint"><strong>baseline</strong><p>baseline 在氣候資料裡的作用是什麼？</p><button type="button" aria-expanded="false" data-answer-target="answer-review-word-2" data-show-label="Check answer" data-hide-label="Hide answer">Check answer</button><div id="answer-review-word-2" class="answer" hidden><strong>作為比較基準</strong></div></div></section><section><h2>跨新聞連結</h2><div class="checkpoint"><strong>連結 1｜油價 × 氣候數字</strong><p>兩篇都提醒你：看到數字時，第一個要檢查什麼？</p><button type="button" aria-expanded="false" data-answer-target="answer-conn-1" data-show-label="查看答案" data-hide-label="收起答案">查看答案</button><div id="answer-conn-1" class="answer" hidden><strong>先看單位、比較基準和時間尺度；不能只看一個大數字就下結論。</strong></div></div><div class="checkpoint"><strong>連結 2｜AI模型 × 世界地圖</strong><p>一個工具『有用』，是不是代表它適合所有任務？</p><button type="button" aria-expanded="false" data-answer-target="answer-conn-2" data-show-label="查看答案" data-hide-label="收起答案">查看答案</button><div id="answer-conn-2" class="answer" hidden><strong>不是。AI模型與地圖投影都要先問用途與限制。</strong></div></div></section><div class="checkpoint"><h2>Evidence Check</h2><p>哪一句最符合這週反覆練到的資訊素養？</p><ol><li>看到來源很多，就可以把任何說法都寫成事實。</li><li>資料支持到哪裡，結論就先停在哪裡。</li><li>新聞標題越肯定，代表證據一定越完整。</li></ol><button type="button" aria-expanded="false" data-answer-target="answer-review-evidence" data-show-label="查看答案" data-hide-label="收起答案">查看答案</button><div id="answer-review-evidence" class="answer" hidden><strong>資料支持到哪裡，結論就先停在哪裡。</strong></div></div><div class="card"><strong>這週我最好奇什麼</strong><p>這週我最想繼續追蹤的一件事：____________________________</p></div>
+
+<footer>
+<div class="footer-actions">
+<a class="download" href="./2026-09-20-REVIEW-W01D7.pdf">PDF download / 下載 PDF</a>
+<span>Version 0.2-ready</span>
+<span>Last checked </span>
+</div>
+</footer>
+</main>
+<script>
+document.addEventListener("click", function (event) {
+  const btn = event.target.closest("[data-answer-target]");
+  if (!btn) return;
+  const id = btn.getAttribute("data-answer-target");
+  const answer = document.getElementById(id);
+  if (!answer) return;
+  const opening = answer.hasAttribute("hidden");
+  if (opening) answer.removeAttribute("hidden"); else answer.setAttribute("hidden", "");
+  btn.setAttribute("aria-expanded", opening ? "true" : "false");
+  btn.textContent = opening ? (btn.dataset.hideLabel || "Hide answer") : (btn.dataset.showLabel || "View answer");
+});
+</script>
+</body>
+</html>

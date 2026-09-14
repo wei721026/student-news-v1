@@ -1,0 +1,39 @@
+{
+  "sample_id": "2026-09-14-BLOCK-001",
+  "program": "OneWeekTrialBlockTest",
+  "candidate_topic": "日月潭花火：是否能以「全台首創24吋水中爆破花火」作為核心標題？",
+  "status": "BLOCKED_SOURCE",
+  "reason": "活動本身與24吋水中爆破花火可由日月潭國家風景區管理處確認；但目前查到的官方資料只說今年『首度打造湖面複合展演劇場』、24吋水中爆破花火『將於日月潭湖面施放』，沒有足夠證據支持『全台首次』『台灣史上第一次』這種全國性最高級敘述。",
+  "verified_parts": [
+    "2026日月潭花火音樂嘉年華首場於9月12日在伊達邵碼頭舉行。",
+    "官方公告活動結合水舞水幕、大型高空煙火與24吋水中爆破花火。",
+    "官方用語為『今年首度打造的湖面複合展演劇場』。"
+  ],
+  "unverified_critical_claim": "台灣首次／全台首創24吋水中爆破花火",
+  "sources": [
+    {
+      "source_id": "S001",
+      "type": "OFFICIAL",
+      "publisher": "日月潭國家風景區管理處",
+      "url": "https://admin.taiwan.net.tw/sunmoonlake/NewsSunmoonlake/News?a=618&id=36371"
+    },
+    {
+      "source_id": "S002",
+      "type": "OFFICIAL",
+      "publisher": "日月潭國家風景區管理處活動頁",
+      "url": "https://www.sunmoonlake.gov.tw/zh-tw/Events/Activitys?a=24&id=7"
+    },
+    {
+      "source_id": "S003",
+      "type": "NEWS",
+      "publisher": "PChome / 台灣好報轉載",
+      "url": "https://news.m.pchome.com.tw/travel/newstaiwandigi/20260911/index-78913643881666279015.html"
+    }
+  ],
+  "qa_decision": {
+    "fact": "BLOCK",
+    "teaching": "NOT_RUN",
+    "layout": "NOT_RUN"
+  },
+  "fallback": "如果要使用這則題材，可以改成不含全國性最高級的角度，例如：『日月潭今年把水幕、高空煙火與24吋水中爆破花火放進同一場湖面展演』，重新查證後再進入Fact QA。"
+}

@@ -1,0 +1,253 @@
+{
+  "contract_version": "0.2",
+  "issue_id": "2026-09-14-ZH-W01D1",
+  "metadata": {
+    "publish_date": "2026-09-14",
+    "language": "zh-TW",
+    "region": "TW",
+    "categories": [
+      "生活經濟",
+      "能源",
+      "國際連動",
+      "資料判讀"
+    ],
+    "difficulty": "STANDARD",
+    "reading_target": "國小高年級教材程度至國中",
+    "interaction_style": "DATA_STORY",
+    "version": "0.2-ready"
+  },
+  "lifecycle": {
+    "time_sensitivity": "TIME_SENSITIVE",
+    "event_date": "2026-09-14",
+    "review_after": "2026-09-21",
+    "last_rechecked_at": "2026-09-14",
+    "correction_required": false
+  },
+  "evidence_maturity": "DEVELOPING_EVENT",
+  "editorial": {
+    "headline": "汽油每公升多0.7元，為什麼國際油價會影響臺灣？",
+    "hook": "今天看到加油站數字變了。這0.7元，背後其實連著國際油價、匯率和國內平穩機制。",
+    "quick_summary": "9月14日起，中油汽油每公升調漲0.7元、柴油調漲0.6元。92無鉛參考價來到31.2元。中油表示，本週國際原油價格明顯上漲，但國內價格並不是把國際漲幅直接照搬，還會經過油價公式與平穩機制。"
+  },
+  "background": [
+    {
+      "term": "原油 ≠ 汽油",
+      "explanation": "原油是石油原料；汽油是煉製後的產品。兩者價格有關，但不是同一個價格。",
+      "type": "STABLE_KNOWLEDGE",
+      "claim_refs": [],
+      "role": "CORE"
+    },
+    {
+      "term": "每桶 ≠ 每公升",
+      "explanation": "國際原油常用『美元／桶』，加油站常用『新臺幣／公升』。看到數字先看單位。",
+      "type": "STABLE_KNOWLEDGE",
+      "claim_refs": [
+        "C003"
+      ],
+      "role": "CORE"
+    }
+  ],
+  "sections": [
+    {
+      "section_id": "S1",
+      "role": "CORE",
+      "title": "今天到底漲多少？",
+      "text": "9月14日至20日，中油汽油每公升調漲0.7元、柴油調漲0.6元。92無鉛參考零售價是31.2元、95無鉛32.7元、98無鉛34.7元；實際售價仍以各加油站公告為準。",
+      "claim_refs": [
+        "C001",
+        "C002"
+      ],
+      "print_priority": "REQUIRED",
+      "audio_priority": "FULL",
+      "checkpoint": {
+        "enabled": true,
+        "style": "INLINE",
+        "prompt": "如果同樣加40公升汽油，單純看0.7元／公升的價差，這次會多多少錢？",
+        "choices": [],
+        "answer": "28元",
+        "explanation": "0.7 × 40 = 28。這只是比較同樣加油量的價差。"
+      }
+    },
+    {
+      "section_id": "S2",
+      "role": "CORE",
+      "title": "國際油價為什麼會傳到臺灣？",
+      "text": "中油公布的調價指標週均價，從每桶99.82美元升到115.61美元。中油把這波上漲與原油供應、運輸風險增加連結；但國內油價還會受到匯率、油價公式與平穩機制影響，所以不能把『國際油價漲多少』直接等同『加油站就漲多少』。",
+      "claim_refs": [
+        "C003",
+        "C004",
+        "C005"
+      ],
+      "print_priority": "REQUIRED",
+      "audio_priority": "FULL",
+      "checkpoint": {
+        "enabled": false,
+        "style": "NONE",
+        "prompt": "",
+        "choices": [],
+        "answer": "",
+        "explanation": ""
+      }
+    },
+    {
+      "section_id": "S3",
+      "role": "EXTENSION",
+      "title": "一條因果鏈，不是一個魔法按鈕",
+      "text": "比較安全的讀法是：國際供應與運輸風險增加 → 國際原油價格變動 → 經過匯率、國內公式與平穩措施 → 國內參考零售價調整。這條鏈可以幫我們避免把複雜價格變化只歸因於單一事件。",
+      "claim_refs": [
+        "C003",
+        "C004",
+        "C005"
+      ],
+      "print_priority": "OPTIONAL",
+      "audio_priority": "OPTIONAL",
+      "checkpoint": {
+        "enabled": false,
+        "style": "NONE",
+        "prompt": "",
+        "choices": [],
+        "answer": "",
+        "explanation": ""
+      }
+    }
+  ],
+  "levels": {
+    "basic": {
+      "enabled": true,
+      "prompt": "92無鉛目前的中油參考零售價是多少？",
+      "answer": "每公升31.2元。"
+    },
+    "standard": {
+      "enabled": true,
+      "prompt": "為什麼『國際油價漲12.29%』不能直接改寫成『臺灣汽油也漲12.29%』？",
+      "answer": "因為國際原油與國內汽油不是同一商品、單位也不同；國內價格還會經過匯率、油價公式與平穩機制。"
+    },
+    "challenge": {
+      "enabled": true,
+      "prompt": "新聞標題若寫『中東戰爭讓臺灣汽油直接漲0.7元』，哪裡太簡化？",
+      "answer": "它把多因素的價格形成寫成單一直接因果；中油公告還提到國際油價指標、匯率與平穩機制。"
+    }
+  },
+  "rescue": {
+    "hint_1": "先只看兩個數字：0.7元／公升、31.2元／公升。",
+    "hint_2": "再把『國際原油』和『加油站汽油』分開，它們相關，但不是同一個價格。",
+    "summary": "這週汽油每公升漲0.7元；國際油價上漲是重要背景，但國內售價還會經過匯率、公式與平穩機制。"
+  },
+  "language_support": {
+    "enabled": false,
+    "key_words": [],
+    "focus_sentence": null,
+    "sentence_breakdown": {},
+    "zh_rescue_summary": null
+  },
+  "derived_data": [
+    {
+      "id": "D001",
+      "expression": "31.2-0.7",
+      "result": "30.5",
+      "based_on_claim_ids": [
+        "C001",
+        "C002"
+      ]
+    },
+    {
+      "id": "D002",
+      "expression": "0.7×40",
+      "result": "28",
+      "based_on_claim_ids": [
+        "C001"
+      ]
+    },
+    {
+      "id": "D003",
+      "expression": "115.61-99.82",
+      "result": "15.79",
+      "based_on_claim_ids": [
+        "C003"
+      ]
+    }
+  ],
+  "provenance": {
+    "claim_ids": [
+      "C001",
+      "C002",
+      "C003",
+      "C004",
+      "C005",
+      "C006"
+    ],
+    "source_ids": [
+      "S001",
+      "S002",
+      "S003"
+    ],
+    "evidence_conflicts": [],
+    "uncertainties": [
+      "本期價格只適用9/14-9/20；之後需重新查核。",
+      "『中東情勢』是中油說明中的重要背景，不應教材化成唯一因果。"
+    ]
+  },
+  "exam_connection": {
+    "enabled": true,
+    "subjects": [
+      "數學",
+      "公民經濟",
+      "地理／國際",
+      "媒體識讀"
+    ],
+    "note": "可能考單位、價差乘法、因果鏈、資料能支持到哪裡，或判斷標題是否把多因素事件寫成單一原因。"
+  },
+  "concept_ids": [
+    "ENERGY-PRICE-PASS-THROUGH",
+    "CAUSE-NOT-SINGLE",
+    "UNIT-AWARENESS"
+  ],
+  "one_thing_prompt": "今天我只記一件事：____________________________",
+  "completion": {
+    "core_complete_rule": "quick_summary + 2 background concepts + S1 + checkpoint + S2",
+    "student_checkbox_label": "□ 核心任務完成"
+  },
+  "visual_spec": {
+    "mode": "DATA_CARDS",
+    "purpose": "用油價與週均價數字建立生活連結",
+    "rights_status": "NOT_APPLICABLE",
+    "required_for_understanding": false,
+    "alt_text": "本週汽油調漲0.7元與92無鉛31.2元等數據卡"
+  },
+  "presentation": {
+    "print_profile": "A4_TWO_PAGE",
+    "core_must_end_page_1": true,
+    "main_text_min_pt": 15.4,
+    "source_text_min_pt": 11.5,
+    "student_visible_source_mode": "COMPACT",
+    "answers": "SELF_CHECK",
+    "overflow_policy": "REVISE_CONTENT_NOT_FONT"
+  },
+  "qa": {
+    "fact": {
+      "status": "PASS",
+      "method": "FACT_RESEARCH",
+      "reviewed_at": "2026-09-14",
+      "notes": "核心價格與指標已交叉確認。"
+    },
+    "teaching": {
+      "status": "PASS",
+      "method": "DESK_REVIEW",
+      "reviewed_at": "2026-09-14",
+      "notes": "Core只教單位、價差與多因素因果鏈；不展開完整油價公式。"
+    },
+    "layout": {
+      "status": "PASS",
+      "method": "RENDER_REVIEW",
+      "reviewed_at": "2026-09-14",
+      "notes": "A4 2 pages; Core page 1; main text 15.4pt; source text 11.5pt."
+    }
+  },
+  "render": {
+    "pdf_ready": true,
+    "html_public": false,
+    "audio_enabled": false,
+    "pdf_file": "W01D1_ZH_print_READY.pdf",
+    "html_file": "W01D1_ZH_internal_preview.html"
+  }
+}

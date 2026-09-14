@@ -1,0 +1,37 @@
+{
+  "issue_id": "2026-09-15-EN-W01D2",
+  "date": "2026-09-15",
+  "version": "0.3-ready",
+  "headline": "Can AI Help Scientists Read the Moon?",
+  "quick_start": "NASA and IBM released an open-source AI model for lunar science. It can help researchers map craters, study volcanic features, and estimate places where ice may be stable near the Moon's poles.",
+  "sources": [
+    {
+      "publisher": "NASA Science",
+      "date": "2026-09-10",
+      "title": "NASA, IBM Launch AI Foundation Model for Lunar Science",
+      "url": "https://science.nasa.gov/science-research/artificial-intelligence-lunar-foundation-model/"
+    },
+    {
+      "publisher": "IBM Newsroom",
+      "date": "2026-09-10",
+      "title": "IBM and NASA Release Open-Source AI Model to Support Lunar Exploration",
+      "url": "https://newsroom.ibm.com/2026-09-10-ibm-and-nasa-release-open-source-ai-model-to-support-lunar-exploration"
+    },
+    {
+      "publisher": "Reuters",
+      "date": "2026-09-10",
+      "title": "IBM, NASA launch AI model to help map ice, craters on Moon",
+      "url": "https://www.reuters.com/science/ibm-nasa-launch-ai-model-help-map-ice-craters-moon-2026-09-10/"
+    }
+  ],
+  "kind": "EN",
+  "words": [
+    "lunar",
+    "surface",
+    "crater",
+    "estimate",
+    "open-source"
+  ],
+  "focus_sentence": "Because the model is already trained on lunar data, scientists can adapt it to map craters and estimate where ice may be stable.",
+  "mini_check": "What is the model mainly designed to help scientists do?"
+}

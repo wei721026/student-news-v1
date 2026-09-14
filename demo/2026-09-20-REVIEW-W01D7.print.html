@@ -1,0 +1,78 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@page {
+  size: A4;
+  margin: 9mm 12mm 12mm;
+  @bottom-left { content: "One-Week Trial · Sunday Review"; font-size: 8.8pt; color:#777; }
+  @bottom-right { content: counter(page) " / " counter(pages); font-size: 8.8pt; color:#777; }
+}
+* { box-sizing: border-box; }
+body { font-family: "Noto Sans CJK TC","Noto Sans",Arial,sans-serif; color:#222; margin:0; }
+.sheet { break-after: page; }
+.sheet:last-child { break-after:auto; }
+.kicker { font-size:10.5pt; font-weight:700; letter-spacing:.02em; color:#555; }
+h1 { font-size:21pt; line-height:1.12; margin:1.5mm 0 1mm; }
+h2 { font-size:14.5pt; margin:2.2mm 0 1mm; }
+.hook { font-size:13.5pt; font-weight:700; line-height:1.35; margin-bottom:1.5mm; }
+.quick { font-size:13pt; line-height:1.35; padding:2mm 2.6mm; background:#f5f6f7; border-radius:7px; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5mm; margin:1.5mm 0; }
+.card { border:1px solid #d7dadd; border-radius:7px; padding:1.6mm 1.9mm; font-size:10.8pt; line-height:1.27; }
+.card b { font-size:11.4pt; }
+.pill { display:inline-block; font-size:8.8pt; font-weight:700; color:#555; margin-bottom:.6mm; }
+.section { margin-top:1.5mm; }
+.row { display:grid; grid-template-columns:1fr 1fr; gap:1.8mm; }
+.prompt { font-size:11.3pt; line-height:1.32; }
+.answer { font-size:10.8pt; line-height:1.3; color:#444; margin-top:.6mm; }
+.choices { font-size:11.2pt; line-height:1.32; margin:1mm 0 0 5mm; }
+.footer-card { border:1px solid #d7dadd; border-radius:8px; padding:3mm; font-size:14.5pt; line-height:1.45; }
+.note { font-size:11.5pt; color:#555; margin-top:3mm; }
+</style></head><body>
+    <section class="sheet">
+      <div class="kicker">ONE-WEEK TRIAL · SUNDAY REVIEW｜不讀新新聞</div>
+      <h1>本週世界整理｜你真的留下了什麼？</h1>
+      <div class="hook">今天不讀新新聞，也不考分數。只把這週六件事重新叫回來。</div>
+      <div class="quick">這週從油價、月球AI、流感疫苗、世界地圖、U18棒球到全球高溫，反覆練到同一個能力：先看資料真正說了什麼，再決定可以推到哪裡。</div>
+
+      <h2>六天，六個世界入口</h2>
+      <div class="grid"><div class="card"><span class="pill">MON / 中文</span><br>
+        <b>油價</b><br>國際原油與加油站售價有關，但不是一個數字直接照搬。<br>
+        <span class="answer">多因素因果＋單位</span></div><div class="card"><span class="pill">TUE / English</span><br>
+        <b>Moon AI</b><br>estimate ≠ prove<br>
+        <span class="answer">AI是研究工具＋證據界線</span></div><div class="card"><span class="pill">WED / 中文</span><br>
+        <b>流感疫苗</b><br>疫苗怎麼設計，和政府怎麼安排公費優先，是兩個問題。<br>
+        <span class="answer">抗原／佐劑＋政策優先</span></div><div class="card"><span class="pill">THU / English</span><br>
+        <b>World Maps</b><br>encourages ≠ bans；不同投影各有取捨。<br>
+        <span class="answer">地圖投影＋對比閱讀</span></div><div class="card"><span class="pill">FRI / 中文</span><br>
+        <b>U18 Baseball</b><br>比分、局數、規則要一起看；規則不能脫離賽事情境。<br>
+        <span class="answer">比例＋條件判斷</span></div><div class="card"><span class="pill">SAT / English</span><br>
+        <b>August Heat</b><br>monthly anomaly ≠ long-term threshold<br>
+        <span class="answer">基準＋時間尺度</span></div></div>
+
+      <div class="row">
+        <div class="section"><h2>① 我還記得什麼？</h2><div class="grid" style="grid-template-columns:1fr"><div class='card'>本週哪一篇讓你第一次發現『同一個數字可能有不同意思』？</div><div class='card'>哪一篇最像生活中真的會遇到的資訊？</div><div class='card'>哪一篇你最想再追蹤後續？</div></div></div>
+        <div class="section"><h2>② 英文詞重新叫回來</h2><div class="grid" style="grid-template-columns:1fr"><div class="card"><b>estimate</b><br>
+        <span class="prompt">estimate 比較接近「估計／推估」還是「證明」？</span><br>
+        <span class="answer">自我檢查：估計／推估</span></div><div class="card"><b>baseline</b><br>
+        <span class="prompt">baseline 在氣候資料裡的作用是什麼？</span><br>
+        <span class="answer">自我檢查：作為比較基準</span></div><div class="card"><b>distort</b><br>
+        <span class="prompt">地圖投影中的 distort 是『產生比例／形狀變形』，不是自動等於『說謊』。</span><br>
+        <span class="answer">自我檢查：對</span></div></div></div>
+      </div>
+
+      <div class="row">
+        <div class="section"><h2>③ 兩則新聞其實連得起來</h2><div class="card"><b>連結 1｜油價 × 氣候數字</b><br>
+        <span class="prompt">兩篇都提醒你：看到數字時，第一個要檢查什麼？</span><br>
+        <span class="answer">先看單位、比較基準和時間尺度；不能只看一個大數字就下結論。</span></div><div class="card"><b>連結 2｜AI模型 × 世界地圖</b><br>
+        <span class="prompt">一個工具『有用』，是不是代表它適合所有任務？</span><br>
+        <span class="answer">不是。AI模型與地圖投影都要先問用途與限制。</span></div></div>
+        <div class="section"><h2>④ 這週最重要的一個資訊素養</h2>
+          <div class="card"><span class="prompt">哪一句最符合這週反覆練到的資訊素養？</span>
+          <ol class="choices"><li>看到來源很多，就可以把任何說法都寫成事實。</li><li>資料支持到哪裡，結論就先停在哪裡。</li><li>新聞標題越肯定，代表證據一定越完整。</li></ol></div>
+        </div>
+      </div>
+    </section>
+    <section class="sheet">
+      <div class="footer-card"><b>做完再看</b><br>資料支持到哪裡，結論就先停在哪裡。</div>
+      <div class="footer-card" style="margin-top:5mm">這週我最想繼續追蹤的一件事：____________________________</div>
+      <div class="note">今天不計分。能把一件事重新說出來，就已經完成一次提取練習。</div>
+    </section>
+    </body></html>
