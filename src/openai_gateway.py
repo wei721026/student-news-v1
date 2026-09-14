@@ -276,11 +276,17 @@ GOLD MASTER PRODUCT PROFILE — ENGLISH
 - `language_support.enabled` MUST be true.
 - Exactly 5 essential words with concise Traditional Chinese meanings.
 - One useful focus sentence from the lesson, plus a short sentence_breakdown.
-- 2 concise CORE sections. At least one CORE checkpoint; ideally one fact check
-  and one evidence-language check.
-- 1 optional EXTENSION section.
-- levels.basic / standard / challenge must progress from fact -> explanation ->
-  evidence/headline judgment.
+- Create 3 substantive CORE reading sections. Together, the CORE reading should
+  normally contain about 280-420 English words, excluding the quick summary,
+  vocabulary cards, questions, rescue, sources and answer key.
+- The 3 CORE sections must create a real reading flow:
+  what happened -> evidence/data/context -> what the evidence does or does not mean.
+- At least 2 CORE checkpoints should require reading the article, not merely
+  recalling the quick summary.
+- 1 optional EXTENSION section may add depth, but must never carry information
+  required to understand the main event.
+- levels.basic / standard / challenge must progress from evidence retrieval ->
+  explanation/integration -> evidence/headline judgment.
 - rescue must contain two actionable hints plus a concise main-idea summary.
 - zh_rescue_summary is allowed ONLY here, in the rescue layer.
 - exam_connection enabled; one_thing_prompt present.
@@ -292,11 +298,16 @@ GOLD MASTER PRODUCT PROFILE — CHINESE
 - Do NOT create English-word cards, Focus Sentence, sentence breakdown, or
   Chinese-rescue duplication.
 - Prefer 2 concise CORE background concept cards when they genuinely help.
-- Use 2 concise CORE sections when the Fact Pack supports them. At least one
-  CORE checkpoint.
-- Use 1 optional EXTENSION section.
+- Create 3 substantive CORE reading sections. Together, the CORE reading should
+  normally contain about 500-800 Chinese characters, excluding the quick
+  summary, questions, rescue, sources and answer key.
+- The 3 CORE sections must create a real reading flow:
+  發生什麼 -> 背景/關鍵數據或條件 -> 證據能支持到哪裡、不能推到哪裡.
+- At least 2 CORE checkpoints should require reading the article, not merely
+  recalling the quick summary.
+- Use 1 optional EXTENSION section only after the CORE is already complete.
 - levels.basic / standard / challenge must progress from:
-  找得到重點 -> 能解釋 -> 能判斷新聞說法/資料界線.
+  找文本證據 -> 整合/解釋 -> 判斷新聞說法、數據或證據界線.
 - rescue must contain two concrete hints plus one concise summary.
 - exam_connection enabled; one_thing_prompt present.
 - completion.student_checkbox_label should read "□ 核心任務完成".
@@ -315,15 +326,38 @@ V1.0 CONTRACT EXAMPLE:
 
 GLOBAL GOLD MASTER RULES:
 - Return JSON only and keep the frozen contract field organization.
+- Do NOT add, remove, rename or restructure Data Contract fields.
 - This is a DAILY CURRENT-AFFAIRS product, not an evergreen encyclopedia page.
 - editorial.headline and hook must lead with the verified recent event.
 - lifecycle.event_date must represent the current event when supported.
 - Older facts belong in background only.
-- First-page Core should fit a 10-15 minute self-study session.
-- quick_summary should be 2-4 short sentences, not a long paragraph.
-- CORE should teach one main information-literacy idea, not every fact found.
-- EXTENSION is optional and must not be required to understand the main point.
-- Three challenge levels should be short and meaningfully different.
+- quick_summary must stay a 2-4 sentence orientation. It MUST NOT replace the article.
+- ARTICLE DEPTH GATE: CORE must be a genuine learner-facing explainer with enough
+  evidence and context that a student has something substantial to read.
+- Across CORE, explicitly answer:
+  (1) what happened,
+  (2) what background is needed,
+  (3) what key data/evidence/conditions matter,
+  (4) what causal or evidentiary limit must not be overstated,
+  (5) why the event matters now.
+- Questions must never substitute for missing article content.
+- EXTENSION is optional and must not contain information required to answer the
+  main CORE questions.
+- LITERACY QUESTION GATE:
+  * at least 3 student questions across checkpoints and levels must require the
+    article itself to answer reliably;
+  * at least 1 question must integrate information from two different parts of
+    the article;
+  * at least 1 must interpret data, conditions, comparison, wording or evidence;
+  * at least 1 must judge whether a headline/claim goes beyond the evidence;
+  * MCQ distractors must be plausible misreadings, not silly obviously-wrong options;
+  * at least 2 of the 3 level questions must NOT be answerable from quick_summary alone.
+- Answers and explanations MAY remain in Structured Content as mother data, but
+  `presentation.answers` MUST be `SEPARATE`. They must not be written into the
+  visible question text.
+- The PDF renderer will place answers together at the END OF PAGE 2.
+- The HTML renderer must hide answers by default and reveal them only after learner action.
+- CORE should still fit a 10-15 minute self-study session.
 - Do not add facts beyond the Fact Pack.
 - Keep uncertainty and evidence limits visible.
 - Source IDs in provenance must come from the Fact Pack.
@@ -352,17 +386,35 @@ PASS only if all are true:
 2. No unsupported claim, exaggerated causality, invented number, URL or source.
 3. The headline/hook clearly explain the current news event rather than turning
    the lesson into an old/evergreen topic.
-4. CORE is concise, has at least one checkpoint, and ends with a clear completion cue.
-5. EXTENSION is optional.
-6. basic -> standard -> challenge meaningfully progress in thinking.
-7. Rescue is concrete, not a duplicate of the article.
-8. The structure resembles the established Gold Master rather than a generic
-   worksheet full of undifferentiated text boxes.
-9. If metadata.language is zh-TW: language_support.enabled MUST be false; no
-   Focus Sentence or duplicated 中文救援.
-10. If metadata.language is en: exactly 5 key words, a focus sentence, useful
+4. ARTICLE DEPTH PASS:
+   - quick_summary is only an orientation, not the whole article;
+   - there are 3 substantive CORE reading sections with a coherent reading flow;
+   - Chinese CORE normally totals about 500-800 Chinese characters, or English
+     CORE about 280-420 English words, unless the verified Fact Pack genuinely
+     cannot support that much without padding;
+   - the CORE explains what happened, context, evidence/data/conditions,
+     evidence limits, and why it matters now.
+5. EXTENSION is optional and is not required to understand the main event.
+6. LITERACY QA PASS:
+   - at least 3 questions require reading the article itself;
+   - at least 1 question integrates two different parts of the article;
+   - at least 1 interprets data/conditions/comparison/evidence language;
+   - at least 1 judges whether a claim/headline exceeds the evidence;
+   - MCQ distractors are plausible misreadings;
+   - at least 2 level questions cannot be answered from quick_summary alone.
+7. basic -> standard -> challenge meaningfully progress in thinking.
+8. ANSWER SEPARATION PASS:
+   - `presentation.answers` is `SEPARATE`;
+   - answer/explanation data exist where needed but are not embedded inside
+     visible prompt text or choices.
+9. Rescue is concrete, not a duplicate of the article.
+10. The structure resembles the established Gold Master rather than a generic
+    worksheet full of undifferentiated text boxes.
+11. If metadata.language is zh-TW: language_support.enabled MUST be false; no
+    Focus Sentence or duplicated 中文救援.
+12. If metadata.language is en: exactly 5 key words, a focus sentence, useful
     sentence breakdown, and zh_rescue_summary only in the rescue layer.
-11. one_thing_prompt and exam_connection are present and useful.
+13. one_thing_prompt and exam_connection are present and useful.
 
 Return REVISE when the problems can be repaired without new research.
 Return BLOCK when factual/currentness problems require new research.
@@ -393,11 +445,20 @@ REVISION INSTRUCTIONS:
 Rules:
 - JSON only.
 - Preserve verified facts and claim/source references.
-- Prefer deletion/condensing over adding content.
 - Do not invent new facts.
 - Preserve Core/Extension distinction.
 - Preserve the Gold Master language-specific profile: Chinese has no language_support; English keeps exactly 5 words + focus sentence.
 - Keep the current-news anchor prominent in headline, hook and quick summary.
+- Preserve ARTICLE DEPTH: do not solve a revision by collapsing CORE into a
+  summary. Keep 3 substantive CORE reading sections unless the Fact Pack cannot
+  safely support them.
+- Preserve LITERACY QUESTION quality: questions must require the article, not
+  just quick_summary; keep plausible distractors and evidence-based reasoning.
+- Keep `presentation.answers = "SEPARATE"`.
+- Answers/explanations may remain in mother data but must not be embedded in
+  prompt text or choices.
+- Prefer deleting repetition, redundant framing and optional extension content
+  BEFORE shortening essential CORE evidence/context.
 """
         return self._json_object(prompt=prompt)
 
@@ -408,13 +469,25 @@ This Structured Content rendered to more than 2 A4 pages.
 CONTENT:
 {json.dumps(structured, ensure_ascii=False, indent=2)}
 
-Condense framing/repetition while preserving:
+Condense for a two-page print layout while preserving:
 - all critical verified meaning;
+- the recent-event anchor;
+- ARTICLE DEPTH: keep a coherent 3-part CORE reading flow and do not reduce the
+  article to a quick summary;
+- LITERACY QA: keep at least 3 reading-dependent questions, including one
+  cross-section integration question, one data/condition/evidence question and
+  one claim/headline judgment;
 - Core Complete;
-- at least one Core checkpoint;
 - English 5-word + focus-sentence scaffold when present;
-- rescue and compact sources.
+- rescue and compact sources;
+- `presentation.answers = "SEPARATE"`.
 
+Remove in this order:
+1. repeated wording;
+2. decorative framing;
+3. optional extension detail;
+4. redundant hints.
+Do NOT remove essential CORE evidence/context just to make the page fit.
 Do not solve overflow by requesting smaller main body text.
 Return JSON only. Do not add facts.
 """

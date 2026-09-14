@@ -40,7 +40,12 @@ def _accent(meta: dict) -> tuple[str, str, str]:
     return "#75621f", "#f7f4e8", "#d7cda8"
 
 
-def _checkpoint_html(checkpoint: dict, *, en: bool) -> str:
+def _checkpoint_html(
+    checkpoint: dict,
+    *,
+    en: bool,
+    question_label: str | None = None,
+) -> str:
     if not checkpoint or not checkpoint.get("enabled"):
         return ""
     choices = checkpoint.get("choices") or []
@@ -49,20 +54,90 @@ def _checkpoint_html(checkpoint: dict, *, en: bool) -> str:
         choices_html = "<ol class='choices'>" + "".join(
             f"<li>{_txt(choice)}</li>" for choice in choices
         ) + "</ol>"
-    answer = _txt(checkpoint.get("answer"))
-    explanation = _txt(checkpoint.get("explanation"))
-    label = "Check after you answer" if en else "做完再看"
-    answer_html = ""
-    if answer or explanation:
-        answer_html = (
-            f"<div class='self-check'><b>{label}：</b> {answer}"
-            + (f"。{explanation}" if explanation else "")
-            + "</div>"
-        )
+    label_html = (
+        f"<span class='q-label'>{_txt(question_label)}</span> "
+        if question_label else ""
+    )
+    response_label = "My answer" if en else "我的答案"
     return (
         "<div class='checkpoint'>"
-        f"<b>{_txt(checkpoint.get('prompt'))}</b>"
-        f"{choices_html}{answer_html}</div>"
+        f"{label_html}<b>{_txt(checkpoint.get('prompt'))}</b>"
+        f"{choices_html}"
+        f"<div class='response-line'>{response_label}：________________________</div>"
+        "</div>"
+    )
+
+
+def _answer_key_items(structured: dict, *, en: bool) -> list[dict]:
+    items: list[dict] = []
+    question_no = 1
+    sections = structured.get("sections") or []
+
+    for role in ("CORE", "EXTENSION"):
+        for section in [s for s in sections if s.get("role") == role]:
+            checkpoint = section.get("checkpoint") or {}
+            if not checkpoint.get("enabled") or not checkpoint.get("prompt"):
+                continue
+            answer = str(checkpoint.get("answer") or "").strip()
+            explanation = str(checkpoint.get("explanation") or "").strip()
+            if answer or explanation:
+                items.append(
+                    {
+                        "label": f"Q{question_no}",
+                        "answer": answer,
+                        "explanation": explanation,
+                    }
+                )
+            question_no += 1
+
+    levels = structured.get("levels") or {}
+    level_labels = {"basic": "★", "standard": "★★", "challenge": "★★★"}
+    for key in ("basic", "standard", "challenge"):
+        item = levels.get(key) or {}
+        if not item.get("enabled", True) or not item.get("prompt"):
+            continue
+        answer = str(item.get("answer") or "").strip()
+        if answer:
+            items.append(
+                {
+                    "label": level_labels[key],
+                    "answer": answer,
+                    "explanation": "",
+                }
+            )
+    return items
+
+
+def _answer_key_html(structured: dict, *, en: bool) -> str:
+    items = _answer_key_items(structured, en=en)
+    if not items:
+        return ""
+    title = (
+        "ANSWERS & EXPLANATIONS | Check after you finish"
+        if en else "答案與解析｜做完再看"
+    )
+    note = (
+        "Go back to the article and check the evidence before reading the answer."
+        if en else "先回到文章找證據，再看這裡。"
+    )
+    rows = []
+    for item in items:
+        explanation = str(item.get("explanation") or "").strip()
+        explanation_html = (
+            f"<span class='answer-expl'>{_txt(explanation)}</span>"
+            if explanation else ""
+        )
+        rows.append(
+            "<div class='answer-row'>"
+            f"<b>{_txt(item.get('label'))}</b> {_txt(item.get('answer'))}"
+            f"{explanation_html}</div>"
+        )
+    return (
+        "<div class='answer-key'>"
+        f"<div class='answer-key-title'>{title}</div>"
+        f"<div class='answer-key-note'>{note}</div>"
+        + "".join(rows)
+        + "</div>"
     )
 
 
@@ -176,7 +251,14 @@ h2 {{
   font-size:10.8pt; line-height:1.28;
 }}
 .choices {{ margin:.8mm 0 .8mm 5mm; padding-left:4mm; }}
-.self-check {{ color:#6a6a6a; font-size:9.7pt; margin-top:.8mm; }}
+.q-label {{
+  display:inline-block; margin-right:1mm; color:{accent};
+  font-weight:900; font-size:9.5pt;
+}}
+.response-line {{
+  margin-top:1.2mm; padding-top:.8mm; border-top:1px dotted #bbb;
+  color:#666; font-size:9.5pt;
+}}
 .core-complete {{
   margin-top:2mm; padding:1.4mm 2mm; border-radius:6px;
   background:#f3f3ef; text-align:center;
@@ -192,7 +274,7 @@ h2 {{
   font-size:10.7pt; line-height:1.26;
 }}
 .level .title {{ color:{accent}; font-size:12.2pt; font-weight:900; }}
-.level .answer {{ color:#666; font-size:9.8pt; margin-top:.5mm; }}
+.level .response-line {{ margin-top:1mm; }}
 .rescue {{
   border:1px solid #d8c783; background:#fffaf0;
   border-radius:8px; padding:2mm 2.5mm;
@@ -215,6 +297,17 @@ h2 {{
   border-top:1px solid #ddd; padding-top:1.2mm; margin-top:1.5mm;
   font-size:9.8pt; line-height:1.25;
 }}
+.answer-key {{
+  margin-top:2mm; padding-top:1.5mm; border-top:2px solid {accent};
+  font-size:9.1pt; line-height:1.22; break-inside:avoid;
+}}
+.answer-key-title {{
+  color:{accent}; font-weight:900; font-size:10.4pt;
+}}
+.answer-key-note {{ color:#777; font-size:8.6pt; margin:.4mm 0 .8mm; }}
+.answer-row {{ margin-top:.55mm; }}
+.answer-row b {{ color:{accent}; margin-right:.8mm; }}
+.answer-expl {{ color:#666; margin-left:1mm; }}
 """
 
 
@@ -244,6 +337,8 @@ h2 { font-size:14.5pt; margin:2.2mm 0 1mm; }
 .answer { font-size:10.8pt; line-height:1.3; color:#444; margin-top:.6mm; }
 .choices { font-size:11.2pt; line-height:1.32; margin:1mm 0 0 5mm; }
 .footer-card { border:1px solid #d7dadd; border-radius:8px; padding:3mm; font-size:14.5pt; line-height:1.45; }
+.review-answer-row { font-size:11.2pt; line-height:1.3; margin-top:1.2mm; }
+.review-answer-row b { margin-right:1mm; }
 .note { font-size:11.5pt; color:#555; margin-top:3mm; }
 """
 
@@ -267,18 +362,40 @@ def _render_review_pdf(structured: dict, out_dir: Path) -> tuple[Path, int]:
     )
     words_html = "".join(
         f"""<div class="card"><b>{_txt(w.get('word'))}</b><br>
-        <span class="prompt">{_txt(w.get('prompt'))}</span><br>
-        <span class="answer">自我檢查：{_txt(w.get('answer'))}</span></div>"""
+        <span class="prompt">{_txt(w.get('prompt'))}</span></div>"""
         for w in words
     )
     connections_html = "".join(
         f"""<div class="card"><b>{_txt(c.get('title'))}</b><br>
-        <span class="prompt">{_txt(c.get('question'))}</span><br>
-        <span class="answer">{_txt(c.get('answer'))}</span></div>"""
+        <span class="prompt">{_txt(c.get('question'))}</span></div>"""
         for c in connections
     )
     choices_html = "".join(
         f"<li>{_txt(choice)}</li>" for choice in (evidence.get("choices") or [])
+    )
+
+    review_answers = []
+    for w in words:
+        if w.get("answer"):
+            review_answers.append(
+                f"<div class='review-answer-row'><b>{_txt(w.get('word'))}</b>"
+                f"{_txt(w.get('answer'))}</div>"
+            )
+    for c in connections:
+        if c.get("answer"):
+            review_answers.append(
+                f"<div class='review-answer-row'><b>{_txt(c.get('title'))}</b>"
+                f"{_txt(c.get('answer'))}</div>"
+            )
+    if evidence.get("answer"):
+        review_answers.append(
+            "<div class='review-answer-row'><b>④ 資訊素養</b>"
+            f"{_txt(evidence.get('answer'))}</div>"
+        )
+    review_answers_html = (
+        "<div class='footer-card'><b>答案與自我檢查｜做完再看</b>"
+        + "".join(review_answers)
+        + "</div>"
     )
 
     html = f"""<!doctype html><html><head><meta charset="utf-8"><style>{REVIEW_CSS}</style></head><body>
@@ -302,9 +419,9 @@ def _render_review_pdf(structured: dict, out_dir: Path) -> tuple[Path, int]:
       </div>
     </section>
     <section class="sheet">
-      <div class="footer-card"><b>做完再看</b><br>{_txt(evidence.get('answer'))}</div>
-      <div class="footer-card" style="margin-top:5mm">{_txt(structured.get('one_week_prompt'))}</div>
+      <div class="footer-card">{_txt(structured.get('one_week_prompt'))}</div>
       <div class="note">今天不計分。能把一件事重新說出來，就已經完成一次提取練習。</div>
+      <div style="margin-top:8mm">{review_answers_html}</div>
     </section>
     </body></html>"""
 
@@ -375,11 +492,21 @@ def _render_daily_pdf(
             )
 
     core_html = ""
+    checkpoint_no = 1
     for section in core[:3]:
+        checkpoint = section.get("checkpoint") or {}
+        question_label = None
+        if checkpoint.get("enabled") and checkpoint.get("prompt"):
+            question_label = f"Q{checkpoint_no}"
+            checkpoint_no += 1
         core_html += (
             f"<h2>{_txt(section.get('title'))}</h2>"
             f"<p class='article'>{_txt(section.get('text'))}</p>"
-            + _checkpoint_html(section.get("checkpoint") or {}, en=en)
+            + _checkpoint_html(
+                checkpoint,
+                en=en,
+                question_label=question_label,
+            )
         )
 
     completion = structured.get("completion") or {}
@@ -389,10 +516,15 @@ def _render_daily_pdf(
 
     ext_html = ""
     for section in extension[:2]:
+        checkpoint = section.get("checkpoint") or {}
+        question_label = None
+        if checkpoint.get("enabled") and checkpoint.get("prompt"):
+            question_label = f"Q{checkpoint_no}"
+            checkpoint_no += 1
         ext_html += (
             f"<div class='extension-box'><h2>{_txt(section.get('title'))}</h2>"
             f"<p class='article'>{_txt(section.get('text'))}</p>"
-            f"{_checkpoint_html(section.get('checkpoint') or {}, en=en)}</div>"
+            f"{_checkpoint_html(checkpoint, en=en, question_label=question_label)}</div>"
         )
 
     level_labels = (
@@ -408,13 +540,15 @@ def _render_daily_pdf(
     )
     levels = structured.get("levels") or {}
     level_html = ""
+    response_label = "My answer" if en else "我的答案"
     for key in ("basic", "standard", "challenge"):
         item = levels.get(key) or {}
         if item.get("enabled", True) and item.get("prompt"):
             level_html += (
                 f"<div class='level'><div class='title'>{level_labels[key]}</div>"
                 f"<div>{_txt(item.get('prompt'))}</div>"
-                f"<div class='answer'>{_txt(item.get('answer'))}</div></div>"
+                f"<div class='response-line'>{response_label}：________________________</div>"
+                "</div>"
             )
 
     rescue = structured.get("rescue") or {}
@@ -447,6 +581,7 @@ def _render_daily_pdf(
         if en else "今天我只記一件事：____________________________"
     )
     source_html = _source_rows(structured, source_records)
+    answer_key_html = _answer_key_html(structured, en=en)
     uncertainties = (structured.get("provenance") or {}).get("uncertainties") or []
     uncertainty_html = ""
     if uncertainties:
@@ -483,6 +618,7 @@ def _render_daily_pdf(
           {source_html}{uncertainty_html}
         </div>
       </div>
+      {answer_key_html}
     </section>
     </body></html>"""
 
