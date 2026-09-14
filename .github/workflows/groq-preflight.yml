@@ -1,0 +1,62 @@
+name: Groq Provider Preflight
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  groq-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install OpenAI-compatible client
+        run: pip install "openai>=3.13,<4"
+
+      - name: Validate Groq key, generation model, and live web research
+        run: |
+          python - <<'PY'
+          import os
+          from openai import OpenAI
+
+          client = OpenAI(
+              api_key=os.environ["GROQ_API_KEY"],
+              base_url="https://api.groq.com/openai/v1",
+              max_retries=3,
+              timeout=120.0,
+          )
+
+          models = {m.id for m in client.models.list().data}
+          required = {"openai/gpt-oss-120b", "groq/compound"}
+          missing = sorted(required - models)
+          if missing:
+              raise RuntimeError("Required Groq models unavailable: " + ", ".join(missing))
+
+          result = client.chat.completions.create(
+              model="groq/compound",
+              messages=[{
+                  "role": "user",
+                  "content": (
+                      "Use live web search. Find the official Groq homepage. "
+                      "Reply with exactly two lines: PASS and the absolute URL."
+                  ),
+              }],
+              temperature=0,
+              max_completion_tokens=80,
+          )
+          text = (result.choices[0].message.content or "").strip()
+          if "http" not in text.lower():
+              raise RuntimeError("Groq web-search preflight did not return a URL")
+          print("GROQ_PREFLIGHT_PASS")
+          print(text)
+          PY
