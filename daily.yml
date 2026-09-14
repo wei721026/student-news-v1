@@ -1,0 +1,64 @@
+name: Student News Daily Automation
+
+on:
+  schedule:
+    # GitHub cron uses UTC.
+    # 21:00-23:30 UTC = 05:00-07:30 Asia/Taipei.
+    # Controller is idempotent and only acts when today's issue still needs work.
+    - cron: "0,30 21-23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: student-news-daily
+  cancel-in-progress: false
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+      PUBLICATION_WEBHOOK_URL: ${{ secrets.PUBLICATION_WEBHOOK_URL }}
+      PUBLICATION_WEBHOOK_SECRET: ${{ secrets.PUBLICATION_WEBHOOK_SECRET }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - id: auth
+        name: Authenticate to Google Cloud (Workload Identity Federation)
+        uses: google-github-actions/auth@v3
+        with:
+          create_credentials_file: true
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install system fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run regression tests
+        run: |
+          python -m unittest -v tests.test_acceptance
+          node tests/gas_core_test.js
+
+      - name: Run scheduler / worker
+        run: python -m src.main
+      - name: Persist generated mother data and internal artifacts
+        run: |
+          git config user.name "student-news-bot"
+          git config user.email "student-news-bot@users.noreply.github.com"
+          git add data/issues out || true
+          if ! git diff --cached --quiet; then
+            git commit -m "automation: update student news artifacts"
+            git push
+          fi
