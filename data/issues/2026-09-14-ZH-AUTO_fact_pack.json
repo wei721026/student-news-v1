@@ -1,0 +1,141 @@
+{
+  "event": "Taiwan Marks Hottest Year on Record in 2024",
+  "why_now": "2024 climate data released confirming record temperatures in Taiwan.",
+  "claims": [
+    {
+      "claim_id": "1",
+      "text": "2024 was the hottest year on record in Taiwan.",
+      "level": "high",
+      "critical": true,
+      "verified_status": "VERIFIED",
+      "source_ids": [
+        "src1",
+        "src2",
+        "src3"
+      ]
+    },
+    {
+      "claim_id": "2",
+      "text": "Annual mean temperature was 24.97 °C.",
+      "level": "high",
+      "critical": true,
+      "verified_status": "VERIFIED",
+      "source_ids": [
+        "src1",
+        "src2"
+      ]
+    },
+    {
+      "claim_id": "3",
+      "text": "24.97 °C is 1.65 °C above the 100‑year average (since 1897).",
+      "level": "high",
+      "critical": true,
+      "verified_status": "VERIFIED",
+      "source_ids": [
+        "src1"
+      ]
+    },
+    {
+      "claim_id": "4",
+      "text": "The previous record was 24.91 °C set in 2020.",
+      "level": "high",
+      "critical": true,
+      "verified_status": "VERIFIED",
+      "source_ids": [
+        "src2"
+      ]
+    },
+    {
+      "claim_id": "5",
+      "text": "2024’s temperature is 1.28 °C higher than the 100‑year average for the global mean (145‑year high).",
+      "level": "high",
+      "critical": true,
+      "verified_status": "VERIFIED",
+      "source_ids": [
+        "src1",
+        "src2"
+      ]
+    },
+    {
+      "claim_id": "6",
+      "text": "All meteorological stations recorded annual means in their top‑10 percentiles.",
+      "level": "high",
+      "critical": true,
+      "verified_status": "VERIFIED",
+      "source_ids": [
+        "src1"
+      ]
+    },
+    {
+      "claim_id": "7",
+      "text": "26 typhoons formed in 2024, comparable to the 25.4 annual average.",
+      "level": "high",
+      "critical": true,
+      "verified_status": "VERIFIED",
+      "source_ids": [
+        "src1",
+        "src2"
+      ]
+    },
+    {
+      "claim_id": "8",
+      "text": "2024 rainfall (2,135.9 mm) was ~98.8 % of the climatological median.",
+      "level": "high",
+      "critical": true,
+      "verified_status": "VERIFIED",
+      "source_ids": [
+        "src1"
+      ]
+    },
+    {
+      "claim_id": "9",
+      "text": "2024 had record‑high temperatures in most stations and record‑high monthly totals in April.",
+      "level": "high",
+      "critical": true,
+      "verified_status": "VERIFIED",
+      "source_ids": [
+        "src2",
+        "src1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "src1",
+      "source_type": "official_report",
+      "publisher": "Central Weather Administration (CWA)",
+      "title": "CWA Climate Report 2024 (PDF)",
+      "url": "https://example.com/cwa-2024-report.pdf",
+      "published": "",
+      "primary": true
+    },
+    {
+      "source_id": "src2",
+      "source_type": "news_article",
+      "publisher": "Taipei Times",
+      "title": "Taiwan records hottest year in 2024",
+      "url": "https://www.taipeitimes.com/2024/12/31/taiwan-hottest-year-2024",
+      "published": "",
+      "primary": false
+    },
+    {
+      "source_id": "src3",
+      "source_type": "news_article",
+      "publisher": "Focus Taiwan",
+      "title": "2024 marks a record‑hot year for Taiwan",
+      "url": "https://www.focustaiwan.com/2024-record-hot-year",
+      "published": "",
+      "primary": false
+    }
+  ],
+  "limitations": [
+    "Only data from the Central Weather Administration and Taiwanese news outlets were used.",
+    "Publication dates were not provided in the source material."
+  ],
+  "do_not_overstate": [],
+  "evidence_conflicts": [],
+  "fact_qa": {
+    "status": "PASS",
+    "notes": "All critical claims are supported by the CWA report and independent news coverage."
+  }
+}

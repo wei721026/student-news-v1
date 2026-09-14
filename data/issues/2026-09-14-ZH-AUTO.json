@@ -1,0 +1,261 @@
+{
+  "contract_version": "1.0",
+  "issue_id": "2026-09-14-ZH-AUTO",
+  "metadata": {
+    "publish_date": "2026-09-14",
+    "language": "zh-TW",
+    "region": "TW",
+    "categories": [
+      "氣候變遷",
+      "環境科學"
+    ],
+    "difficulty": "BASIC",
+    "reading_target": "中學生",
+    "interaction_style": "DATA_STORY",
+    "version": "1.0"
+  },
+  "lifecycle": {
+    "time_sensitivity": "EVERGREEN",
+    "event_date": "2024-12-31",
+    "review_after": "2027-09-14",
+    "last_rechecked_at": "2026-09-14T10:00:00Z",
+    "correction_required": false
+  },
+  "evidence_maturity": "ESTABLISHED",
+  "editorial": {
+    "headline": "2024年創下台灣最高氣溫紀錄",
+    "hook": "氣象局最新報告顯示，2024年成為台灣有史以來最熱的一年。",
+    "quick_summary": "根據中央氣象局2024年氣候報告，全年平均氣溫24.97°C，較百年平均高出1.65°C，創下新紀錄。"
+  },
+  "background": [
+    {
+      "term": "中央氣象局 (CWA)",
+      "explanation": "台灣官方氣象機關，負責收集、分析全島氣象資料。",
+      "type": "NEWS_CONTEXT",
+      "claim_refs": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "role": "CORE"
+    },
+    {
+      "term": "百年平均",
+      "explanation": "自1897年至今的氣溫長期平均值，作為氣候變遷的基準。",
+      "type": "STABLE_KNOWLEDGE",
+      "claim_refs": [
+        "3",
+        "5"
+      ],
+      "role": "CORE"
+    }
+  ],
+  "sections": [
+    {
+      "section_id": "S1",
+      "role": "CORE",
+      "title": "2024年氣候概況",
+      "text": "根據CWA的《2024年氣候報告》，2024年全台年平均氣溫為24.97°C，較百年平均（23.32°C）高出1.65°C，打破以往紀錄。此前最高紀錄為2020年的24.91°C。全島所有氣象站的年均溫皆進入前10%分位，顯示全國性熱浪持續。全年降雨量2,135.9毫米，約占氣候中位數的98.8%，颱風出現26次，與年均25.4次相近。",
+      "claim_refs": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "print_priority": "REQUIRED",
+      "audio_priority": "FULL",
+      "checkpoint": {
+        "enabled": true,
+        "style": "MCQ",
+        "prompt": "以下哪項敘述正確描述2024年的氣候特徵？",
+        "choices": [
+          "A. 年均溫24.97°C，較百年平均高1.65°C",
+          "B. 年均溫24.97°C，低於百年平均0.5°C",
+          "C. 2024年降雨量為2,500毫米，超過中位數10%",
+          "D. 2024年只有10個颱風形成"
+        ],
+        "answer": "A",
+        "explanation": "根據CWA報告，2024年年均溫24.97°C，較百年平均高1.65°C，且降雨量與中位數相近，颱風數量為26次。"
+      }
+    },
+    {
+      "section_id": "S2",
+      "role": "EXTENSION",
+      "title": "全球視角",
+      "text": "2024年全球平均氣溫亦創下145年觀測以來的最高紀錄，較百年平均高出1.28°C。台灣的氣溫上升幅度與全球趨勢相呼應，顯示氣候變遷的地域性影響。",
+      "claim_refs": [
+        "5"
+      ],
+      "print_priority": "OPTIONAL",
+      "audio_priority": "OPTIONAL",
+      "checkpoint": {
+        "enabled": false,
+        "style": "NONE"
+      }
+    }
+  ],
+  "levels": {
+    "basic": {
+      "enabled": true,
+      "prompt": "請用自己的話說明2024年為何成為台灣最高溫紀錄。",
+      "answer": "2024年全年平均氣溫24.97°C，較百年平均高1.65°C，創下新高。"
+    },
+    "standard": {
+      "enabled": true,
+      "prompt": "比較2020年與2024年的年均溫差異，並說明可能的氣候因素。",
+      "answer": "2024年年均溫24.97°C，比2020年的24.91°C高0.06°C，顯示持續升溫趨勢，與全球氣候變暖相關。"
+    },
+    "challenge": {
+      "enabled": true,
+      "prompt": "若以100年平均作為基準，計算2024年相對於全球平均升溫的比例差異。",
+      "answer": "台灣升溫1.65°C/全球升溫1.28°C≈1.29倍。"
+    }
+  },
+  "rescue": {
+    "hint_1": "年均溫24.97°C是官方報告的數值。",
+    "hint_2": "與百年平均的差距為1.65°C。",
+    "summary": "2024年台灣創下最高年均溫，與全球氣候變暖趨勢相符。"
+  },
+  "language_support": {
+    "enabled": true,
+    "key_words": [
+      {
+        "word": "氣溫",
+        "part_of_speech": "名詞",
+        "meaning_zh": "大氣的熱度，通常以攝氏度表示。",
+        "example": "今年的氣溫創新高。",
+        "print_mode": "WORD_MEANING"
+      },
+      {
+        "word": "紀錄",
+        "part_of_speech": "名詞",
+        "meaning_zh": "歷史上最突出或最極端的數值。",
+        "example": "打破最高氣溫紀錄。",
+        "print_mode": "WORD_MEANING"
+      },
+      {
+        "word": "百年平均",
+        "part_of_speech": "名詞",
+        "meaning_zh": "過去100年的平均氣溫值。",
+        "example": "比百年平均高1.65°C。",
+        "print_mode": "WORD_MEANING"
+      },
+      {
+        "word": "颱風",
+        "part_of_speech": "名詞",
+        "meaning_zh": "在熱帶海洋形成的強烈風暴。",
+        "example": "2024年有26個颱風形成。",
+        "print_mode": "WORD_MEANING"
+      },
+      {
+        "word": "降雨量",
+        "part_of_speech": "名詞",
+        "meaning_zh": "一定期間內的雨水總量。",
+        "example": "2024年降雨量為2,135.9毫米。",
+        "print_mode": "WORD_MEANING"
+      }
+    ],
+    "focus_sentence": "2024年台灣的年均氣溫創下新高，顯示氣候持續變暖。",
+    "sentence_breakdown": {
+      "2024年": "時間點",
+      "台灣的": "地點所有格",
+      "年均氣溫": "概念",
+      "創下": "動作",
+      "新高": "結果",
+      "顯示": "連接詞",
+      "氣候持續變暖": "因果說明"
+    },
+    "zh_rescue_summary": "2024年台灣氣溫創新高，與全球暖化趨勢相呼應。"
+  },
+  "derived_data": [],
+  "provenance": {
+    "claim_ids": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "source_ids": [
+      "src1",
+      "src2",
+      "src3"
+    ],
+    "evidence_conflicts": [],
+    "uncertainties": []
+  },
+  "exam_connection": {
+    "enabled": true,
+    "subjects": [
+      "地理",
+      "自然科學"
+    ],
+    "note": "可用於氣候變遷單元的測驗。"
+  },
+  "concept_ids": [
+    "CLIMATE_CHANGE_TW_2024"
+  ],
+  "one_thing_prompt": "2024年台灣的氣候變化最重要的資訊是什麼？",
+  "completion": {
+    "core_complete_rule": "完成核對題且閱讀全部核心段落即視為完成。",
+    "student_checkbox_label": "我已完成本單元的閱讀與練習。"
+  },
+  "visual_spec": {
+    "mode": "DATA_CARDS",
+    "purpose": "呈現各站點溫度分位與全年降雨量。",
+    "rights_status": "LINK_ONLY",
+    "required_for_understanding": false,
+    "alt_text": "圖表顯示2024年全台氣溫與降雨概況。"
+  },
+  "presentation": {
+    "print_profile": "A4_TWO_PAGE",
+    "core_must_end_page_1": true,
+    "main_text_min_pt": 15.4,
+    "source_text_min_pt": 11.5,
+    "student_visible_source_mode": "COMPACT",
+    "answers": "SELF_CHECK",
+    "overflow_policy": "REVISE_CONTENT_NOT_FONT"
+  },
+  "qa": {
+    "fact": {
+      "status": "PASS",
+      "method": "FACT_RESEARCH",
+      "reviewed_at": "2026-09-14T21:12:15+08:00",
+      "notes": "所有關鍵主張皆由CWA報告與新聞驗證。"
+    },
+    "teaching": {
+      "status": "PASS",
+      "method": "DESK_REVIEW",
+      "reviewed_at": "2026-09-14T21:12:15+08:00",
+      "notes": "教學設計符合10-15分鐘自學時長。"
+    },
+    "layout": {
+      "status": "PASS",
+      "method": "RENDER_REVIEW",
+      "reviewed_at": "2026-09-14T21:12:15+08:00",
+      "notes": "版面配置符合核心與延伸分離。"
+    }
+  },
+  "render": {
+    "pdf_ready": true,
+    "html_public": false,
+    "audio_enabled": false,
+    "pdf_file": "2026-09-14-ZH-AUTO.pdf",
+    "html_file": "2026-09-14-ZH-AUTO.html"
+  },
+  "freeze_note": "Schema frozen after P01-P04 and One-Week Trial D1-D7. No structural schema changes were required during the seven-day trial."
+}

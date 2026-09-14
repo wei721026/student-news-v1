@@ -1,0 +1,30 @@
+{
+  "issue_id": "2026-09-14-ZH-AUTO",
+  "date": "2026-09-14",
+  "version": "1.0",
+  "headline": "2024年創下台灣最高氣溫紀錄",
+  "quick_start": "根據中央氣象局2024年氣候報告，全年平均氣溫24.97°C，較百年平均高出1.65°C，創下新紀錄。",
+  "sources": [
+    {
+      "publisher": "Central Weather Administration (CWA)",
+      "date": "",
+      "title": "CWA Climate Report 2024 (PDF)",
+      "url": "https://example.com/cwa-2024-report.pdf"
+    },
+    {
+      "publisher": "Taipei Times",
+      "date": "",
+      "title": "Taiwan records hottest year in 2024",
+      "url": "https://www.taipeitimes.com/2024/12/31/taiwan-hottest-year-2024"
+    },
+    {
+      "publisher": "Focus Taiwan",
+      "date": "",
+      "title": "2024 marks a record‑hot year for Taiwan",
+      "url": "https://www.focustaiwan.com/2024-record-hot-year"
+    }
+  ],
+  "kind": "ZH",
+  "one_thing": "2024年台灣的氣候變化最重要的資訊是什麼？",
+  "mini_check": "以下哪項敘述正確描述2024年的氣候特徵？"
+}
