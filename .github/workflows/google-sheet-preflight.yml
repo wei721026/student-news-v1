@@ -1,1 +1,71 @@
+name: Google Sheet WIF Preflight
 
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          create_credentials_file: true
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Google Sheet dependencies
+        run: pip install gspread google-auth
+
+      - name: Read Google Sheet
+        env:
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+        run: |
+          python - <<'PY'
+          import os
+          import google.auth
+          import gspread
+
+          scopes = [
+              "https://www.googleapis.com/auth/spreadsheets",
+              "https://www.googleapis.com/auth/drive",
+          ]
+
+          creds, _ = google.auth.default(scopes=scopes)
+          client = gspread.authorize(creds)
+
+          book = client.open_by_key(os.environ["GOOGLE_SHEET_ID"])
+
+          print("SHEET_OK:", book.title)
+
+          names = [ws.title for ws in book.worksheets()]
+          print("TABS:", ", ".join(names))
+
+          required = {
+              "DASHBOARD",
+              "ISSUES",
+              "SOURCES",
+              "CLAIMS",
+              "CONCEPTS",
+              "DECISIONS",
+              "AUTOMATION",
+              "RUN_LOG",
+          }
+
+          missing = sorted(required - set(names))
+          if missing:
+              raise RuntimeError("Missing required tabs: " + ", ".join(missing))
+
+          print("PRECHECK_PASS")
+          PY
