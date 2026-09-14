@@ -60,12 +60,33 @@ class SheetsGateway:
         return "\n".join(rows[-20:])
 
     def today_issue(self, date_str: str):
-        for idx, record in enumerate(self.issue_records(), start=2):
+        records = list(enumerate(self.issue_records(), start=2))
+
+        # Production always has priority for the scheduled daily run.
+        for idx, record in records:
             if (
                 str(record.get("Publish_Date")) == date_str
-                and record.get("Program") in ("Production", "OneWeekTrial")
+                and record.get("Program") == "Production"
             ):
                 return idx, record
+
+        # Resume OneWeekTrial only while it is genuinely still in progress.
+        terminal_statuses = {"READY", "APPROVED", "PUBLISHED"}
+
+        for idx, record in records:
+            if (
+                str(record.get("Publish_Date")) != date_str
+                or record.get("Program") != "OneWeekTrial"
+            ):
+                continue
+
+            status = str(record.get("Status") or "").upper()
+
+            if status in terminal_statuses or status.startswith("BLOCKED"):
+                continue
+
+            return idx, record
+
         return None, None
 
     def append_issue(self, values: dict):
