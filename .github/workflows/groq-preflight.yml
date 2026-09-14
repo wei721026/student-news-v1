@@ -1,0 +1,85 @@
+name: Groq Provider Preflight
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  groq-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Groq SDK
+        run: pip install --upgrade groq
+
+      - name: Validate Groq generation and browser search
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          from groq import Groq
+
+          raw = os.environ.get("GROQ_API_KEY", "")
+          key = "".join(raw.strip().strip('`"\'').split())
+          if not key:
+              raise RuntimeError("GROQ_API_KEY is empty")
+
+          if key != raw:
+              print("INFO: GROQ_API_KEY whitespace/quote normalization applied")
+
+          client = Groq(api_key=key, max_retries=1, timeout=90.0)
+
+          generation = client.chat.completions.create(
+              model="openai/gpt-oss-120b",
+              messages=[{
+                  "role": "user",
+                  "content": "Reply with one short sentence confirming generation works."
+              }],
+              reasoning_effort="low",
+              include_reasoning=False,
+              temperature=0.2,
+              max_completion_tokens=256,
+          )
+          gen_text = (generation.choices[0].message.content or "").strip()
+          if not gen_text:
+              raise RuntimeError("Generation returned empty content")
+
+          print("GROQ_GENERATION_PASS")
+          print("GENERATION_SAMPLE:", gen_text[:300])
+
+          search = client.chat.completions.create(
+              model="openai/gpt-oss-20b",
+              messages=[{
+                  "role": "user",
+                  "content": (
+                      "Use browser search. Find Groq's official rate limits documentation. "
+                      "Return only: page title, absolute URL, and one current rate-limit fact."
+                  )
+              }],
+              tools=[{"type": "browser_search"}],
+              tool_choice="required",
+              reasoning_effort="low",
+              include_reasoning=False,
+              temperature=0.2,
+              max_completion_tokens=768,
+          )
+
+          search_text = (search.choices[0].message.content or "").strip()
+          if not search_text:
+              raise RuntimeError("Browser search returned empty content")
+
+          print("GROQ_BROWSER_SEARCH_PASS")
+          print("SEARCH_SAMPLE:", search_text[:800])
+          print("GROQ_PREFLIGHT_PASS")
+          PY
