@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import json
 import os
+import re
+import time
 from datetime import date, datetime
 
-from openai import OpenAI
+from openai import OpenAI, RateLimitError
 
 from .schemas import DISCOVERY_SCHEMA, FACT_SCHEMA, QA_SCHEMA
 
@@ -23,6 +25,8 @@ class OpenAIGateway:
 
     SEARCH_MODEL = "openai/gpt-oss-20b"
     CORE_MODEL = "openai/gpt-oss-120b"
+    RATE_LIMIT_MAX_RETRIES = 4
+    RATE_LIMIT_FALLBACK_WAIT_SEC = 25.0
 
     def __init__(self, settings):
         self.settings = settings
@@ -35,12 +39,63 @@ class OpenAIGateway:
             api_key=api_key,
             base_url="https://api.groq.com/openai/v1",
             timeout=90.0,
-            max_retries=1,
+            # Groq free-tier TPM is low enough that a normal multi-stage run can
+            # legitimately hit 429 between consecutive CORE_MODEL calls. We own
+            # the retry timing below so GitHub Actions waits instead of failing.
+            max_retries=0,
         )
 
     @staticmethod
     def _rid(response) -> str:
         return str(getattr(response, "id", "") or "")
+
+    @staticmethod
+    def _compact_json(value) -> str:
+        """Serialize mother data compactly to reduce Groq TPM pressure."""
+        return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+
+    @classmethod
+    def _retry_after_seconds(cls, exc: Exception) -> float:
+        response = getattr(exc, "response", None)
+        headers = getattr(response, "headers", None) or {}
+        raw = headers.get("retry-after") or headers.get("Retry-After")
+        if raw:
+            try:
+                return float(raw)
+            except (TypeError, ValueError):
+                pass
+
+        # Groq also includes text such as "Please try again in 20.587s."
+        match = re.search(r"try again in\s*([0-9]+(?:\.[0-9]+)?)s", str(exc), re.I)
+        if match:
+            return float(match.group(1))
+        return cls.RATE_LIMIT_FALLBACK_WAIT_SEC
+
+    def _call_with_rate_limit_retry(self, call, *, label: str):
+        """
+        Respect Groq's 429 retry window instead of failing the scheduled run.
+
+        This is deliberately narrow: only 429 / RateLimitError is retried here.
+        Other API, schema or application errors still fail fast and remain visible.
+        """
+        total_attempts = self.RATE_LIMIT_MAX_RETRIES + 1
+        for attempt in range(1, total_attempts + 1):
+            try:
+                return call()
+            except RateLimitError as exc:
+                if attempt >= total_attempts:
+                    print(
+                        f"GROQ_RATE_LIMIT_EXHAUSTED label={label} "
+                        f"attempt={attempt}/{total_attempts}"
+                    )
+                    raise
+                wait_sec = max(1.0, self._retry_after_seconds(exc) + 1.0)
+                wait_sec = min(wait_sec, 90.0)
+                print(
+                    f"GROQ_RATE_LIMIT_WAIT label={label} "
+                    f"attempt={attempt}/{total_attempts} wait={wait_sec:.1f}s"
+                )
+                time.sleep(wait_sec)
 
     def _structured(
         self,
@@ -50,18 +105,22 @@ class OpenAIGateway:
         name: str,
         model: str | None = None,
     ) -> tuple[dict, str]:
-        response = self.client.responses.create(
-            model=model or self.CORE_MODEL,
-            input=prompt,
-            reasoning={"effort": "low"},
-            text={
-                "format": {
-                    "type": "json_schema",
-                    "name": name,
-                    "schema": schema,
-                    "strict": True,
-                }
-            },
+        selected_model = model or self.CORE_MODEL
+        response = self._call_with_rate_limit_retry(
+            lambda: self.client.responses.create(
+                model=selected_model,
+                input=prompt,
+                reasoning={"effort": "low"},
+                text={
+                    "format": {
+                        "type": "json_schema",
+                        "name": name,
+                        "schema": schema,
+                        "strict": True,
+                    }
+                },
+            ),
+            label=f"structured:{name}:{selected_model}",
         )
         return json.loads(response.output_text), self._rid(response)
 
@@ -71,11 +130,15 @@ class OpenAIGateway:
         prompt: str,
         model: str | None = None,
     ) -> tuple[dict, str]:
-        response = self.client.responses.create(
-            model=model or self.CORE_MODEL,
-            input=prompt,
-            reasoning={"effort": "low"},
-            text={"format": {"type": "json_object"}},
+        selected_model = model or self.CORE_MODEL
+        response = self._call_with_rate_limit_retry(
+            lambda: self.client.responses.create(
+                model=selected_model,
+                input=prompt,
+                reasoning={"effort": "low"},
+                text={"format": {"type": "json_object"}},
+            ),
+            label=f"json_object:{selected_model}",
         )
         return json.loads(response.output_text), self._rid(response)
 
@@ -84,12 +147,15 @@ class OpenAIGateway:
         *,
         prompt: str,
     ) -> tuple[str, str]:
-        response = self.client.responses.create(
-            model=self.SEARCH_MODEL,
-            input=prompt,
-            reasoning={"effort": "low"},
-            tool_choice="required",
-            tools=[{"type": "browser_search"}],
+        response = self._call_with_rate_limit_retry(
+            lambda: self.client.responses.create(
+                model=self.SEARCH_MODEL,
+                input=prompt,
+                reasoning={"effort": "low"},
+                tool_choice="required",
+                tools=[{"type": "browser_search"}],
+            ),
+            label=f"browser_search:{self.SEARCH_MODEL}",
         )
         text = (response.output_text or "").strip()
         if not text:
@@ -437,10 +503,10 @@ Always ask what can be deleted.
 Revise this Structured Content JSON.
 
 CONTENT:
-{json.dumps(structured, ensure_ascii=False, indent=2)}
+{self._compact_json(structured)}
 
 REVISION INSTRUCTIONS:
-{json.dumps(instructions, ensure_ascii=False, indent=2)}
+{self._compact_json(instructions)}
 
 Rules:
 - JSON only.
@@ -467,7 +533,7 @@ Rules:
 This Structured Content rendered to more than 2 A4 pages.
 
 CONTENT:
-{json.dumps(structured, ensure_ascii=False, indent=2)}
+{self._compact_json(structured)}
 
 Condense for a two-page print layout while preserving:
 - all critical verified meaning;
