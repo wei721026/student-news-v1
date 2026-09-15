@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: read
+
 jobs:
   regression:
     runs-on: ubuntu-latest
@@ -24,7 +25,9 @@ jobs:
           pip install -r requirements.txt
           pip install -r publisher/requirements.txt
       - name: Run Python acceptance tests
-        run: python -m unittest -v tests.test_acceptance
+        run: |
+          python -m unittest -v tests.test_acceptance
+          python -m unittest -v tests.test_daily_pdf_smoke
       - name: Run publisher HTTP smoke test
         run: python -m unittest -v tests.test_publisher_http
       - name: Run GAS core tests
