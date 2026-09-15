@@ -25,8 +25,9 @@ class OpenAIGateway:
 
     SEARCH_MODEL = "openai/gpt-oss-20b"
     CORE_MODEL = "openai/gpt-oss-120b"
-    RATE_LIMIT_MAX_RETRIES = 4
-    RATE_LIMIT_FALLBACK_WAIT_SEC = 25.0
+    RATE_LIMIT_MAX_RETRIES = 6
+    RATE_LIMIT_FALLBACK_WAIT_SEC = 30.0
+    RATE_LIMIT_MAX_WAIT_SEC = 900.0
 
     def __init__(self, settings):
         self.settings = settings
@@ -54,21 +55,62 @@ class OpenAIGateway:
         """Serialize mother data compactly to reduce Groq TPM pressure."""
         return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
 
+    @staticmethod
+    def _parse_wait_duration(raw: str) -> float | None:
+        """
+        Parse Groq wait strings such as:
+        - "20.587s"
+        - "4m31.728s"
+        - "1h2m3.5s"
+        """
+        value = str(raw or "").strip().lower()
+        if not value:
+            return None
+
+        try:
+            return float(value)
+        except ValueError:
+            pass
+
+        match = re.fullmatch(
+            r"(?:(?P<h>[0-9]+(?:\.[0-9]+)?)h)?"
+            r"(?:(?P<m>[0-9]+(?:\.[0-9]+)?)m)?"
+            r"(?:(?P<s>[0-9]+(?:\.[0-9]+)?)s)?",
+            value,
+        )
+        if not match or not any(match.groupdict().values()):
+            return None
+
+        hours = float(match.group("h") or 0)
+        minutes = float(match.group("m") or 0)
+        seconds = float(match.group("s") or 0)
+        return hours * 3600 + minutes * 60 + seconds
+
     @classmethod
     def _retry_after_seconds(cls, exc: Exception) -> float:
         response = getattr(exc, "response", None)
         headers = getattr(response, "headers", None) or {}
-        raw = headers.get("retry-after") or headers.get("Retry-After")
-        if raw:
-            try:
-                return float(raw)
-            except (TypeError, ValueError):
-                pass
 
-        # Groq also includes text such as "Please try again in 20.587s."
-        match = re.search(r"try again in\s*([0-9]+(?:\.[0-9]+)?)s", str(exc), re.I)
+        raw = headers.get("retry-after") or headers.get("Retry-After")
+        parsed = cls._parse_wait_duration(raw)
+        if parsed is not None:
+            return parsed
+
+        # Groq error messages can contain:
+        # "Please try again in 20.587s."
+        # "Please try again in 4m31.728s."
+        match = re.search(
+            r"try again in\s*((?:[0-9]+(?:\.[0-9]+)?h)?"
+            r"(?:[0-9]+(?:\.[0-9]+)?m)?"
+            r"(?:[0-9]+(?:\.[0-9]+)?s))",
+            str(exc),
+            re.I,
+        )
         if match:
-            return float(match.group(1))
+            parsed = cls._parse_wait_duration(match.group(1))
+            if parsed is not None:
+                return parsed
+
         return cls.RATE_LIMIT_FALLBACK_WAIT_SEC
 
     def _call_with_rate_limit_retry(self, call, *, label: str):
@@ -89,11 +131,12 @@ class OpenAIGateway:
                         f"attempt={attempt}/{total_attempts}"
                     )
                     raise
-                wait_sec = max(1.0, self._retry_after_seconds(exc) + 1.0)
-                wait_sec = min(wait_sec, 90.0)
+                requested_wait = max(1.0, self._retry_after_seconds(exc) + 2.0)
+                wait_sec = min(requested_wait, self.RATE_LIMIT_MAX_WAIT_SEC)
                 print(
                     f"GROQ_RATE_LIMIT_WAIT label={label} "
-                    f"attempt={attempt}/{total_attempts} wait={wait_sec:.1f}s"
+                    f"attempt={attempt}/{total_attempts} "
+                    f"requested_wait={requested_wait:.1f}s wait={wait_sec:.1f}s"
                 )
                 time.sleep(wait_sec)
 
