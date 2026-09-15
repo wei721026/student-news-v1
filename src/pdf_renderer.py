@@ -11,6 +11,17 @@ def _txt(value) -> str:
     return escape(str(value or ""))
 
 
+def _css_string(value) -> str:
+    """Escape dynamic text embedded inside a CSS quoted string."""
+    return (
+        str(value or "")
+        .replace("\\", "\\\\")
+        .replace('"', '\\"')
+        .replace("\r", " ")
+        .replace("\n", " ")
+    )
+
+
 def _is_en(structured: dict) -> bool:
     return str((structured.get("metadata") or {}).get("language", "")).lower().startswith("en")
 
@@ -166,12 +177,15 @@ def _source_rows(structured: dict, source_records: list[dict] | None) -> str:
 def _daily_css(structured: dict) -> str:
     meta = structured.get("metadata") or {}
     accent, soft, line = _accent(meta)
+    footer_text = _css_string(
+        f"Student News · {structured.get('issue_id') or 'issue'}"
+    )
     return f"""
 @page {{
   size:A4;
   margin:8mm 12mm 12mm;
   @bottom-left {{
-    content:"Student News · " attr(data-footer);
+    content:"{footer_text}";
     font-size:8.3pt; color:#777;
   }}
   @bottom-right {{
@@ -593,7 +607,7 @@ def _render_daily_pdf(
 
     css = _daily_css(structured)
     html = f"""<!doctype html><html><head><meta charset="utf-8"><style>{css}</style></head>
-    <body data-footer="{_txt(structured.get('issue_id'))}">
+    <body>
     <section class="sheet">
       <div class="kicker">{_txt(kicker)}</div>
       <h1>{_txt(editorial.get('headline'))}</h1>
